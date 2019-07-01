@@ -6,7 +6,7 @@ dotenv.config({
   path: path.join(__dirname, '../../../.env'),
 });
 
-const db = process.env.DATABASE_URLDATABASE_URL ? new Sequelize(process.env.DATABASE_URL, {
+const db = process.env.DATABASE_URL ? new Sequelize(process.env.DATABASE_URL, {
   operatorsAliases: false,
   dialect: 'postgres',
   protocol: 'postgres',
