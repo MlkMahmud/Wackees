@@ -12,3 +12,5 @@ app.use(cookieParser());
 app.use(customerRoutes);
 
 app.listen(port);
+
+export default app;

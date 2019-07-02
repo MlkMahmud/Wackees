@@ -29,7 +29,15 @@ async function createNewCustomer(req, res) {
 
         // CREATE A TOKEN WITH THE NEW USER'S DETAILS AND SEND IT AS A COOKIE
         const token = jwt.sign({ id: customer.id }, process.env.JWT_SECRET, { expiresIn: '24h' });
-        res.status(201).cookie('token', token, { httpOnly: true }).json(customer);
+        res
+          .status(201)
+          .cookie('token', token, { httpOnly: true })
+          .json({
+            name: customer.name,
+            email: customer.email,
+            image: customer.image,
+            cart: customer.cart,
+          });
       }
     } catch (e) {
       res.status(500).json(e);
