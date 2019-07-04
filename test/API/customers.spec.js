@@ -44,7 +44,7 @@ describe('Customer API', () => {
               expect(customer).to.have.property('name', name);
               done();
             })
-            .catch(() => done());
+            .catch(e => done(e));
         });
     });
     it("Should not create a new user with an existing user's name/email", (done) => {
