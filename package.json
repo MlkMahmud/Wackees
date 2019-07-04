@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "npx mocha --recursive --timeout 10000 --exit --require @babel/register,@babel/polyfill",
-    "server": "nodemon --exec babel-node server/src/index"
+    "server": "nodemon --exec babel-node server/src/index",
+    "coverage": "nyc report --reporter=text-lcov | coveralls"
   },
   "keywords": [],
   "author": "Malik Mahmud <almalikmahmud@gmail.com>",
@@ -19,13 +20,15 @@
     "@babel/register": "^7.4.4",
     "chai": "^4.2.0",
     "chai-http": "^4.3.0",
+    "coveralls": "^3.0.4",
     "dotenv": "^8.0.0",
     "eslint": "^5.16.0",
     "eslint-config-airbnb": "^17.1.0",
     "eslint-plugin-import": "^2.18.0",
     "eslint-plugin-jsx-a11y": "^6.2.3",
     "eslint-plugin-react": "^7.14.2",
-    "mocha": "^6.1.4"
+    "mocha": "^6.1.4",
+    "nyc": "^14.1.1"
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",

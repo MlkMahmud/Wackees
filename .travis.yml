@@ -9,3 +9,4 @@ services:
 before_script:
   - psql -c "create database wackees_test;" -U postgres
 script: npm test
+after_success: npm run coverage
