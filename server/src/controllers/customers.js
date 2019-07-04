@@ -52,6 +52,35 @@ async function createNewCustomer(req, res) {
   }
 }
 
+async function login(req, res) {
+  const { email, password } = req.body;
+
+  try {
+    const customer = await Customer.findOne({
+      where: { email },
+    });
+
+    if (!customer) return res.status(400).json({ message: "Can't find a customer with the given email address." });
+    const isVerified = bcrypt.compareSync(password, customer.password);
+    if (isVerified) {
+      const token = jwt.sign({ id: customer.id }, process.env.JWT_SECRET, { expiresIn: '24h' });
+      return res
+        .status(200)
+        .cookie('token', token, { httpOnly: true })
+        .json({
+          name: customer.name,
+          email: customer.email,
+          image: customer.image,
+          cart: customer.cart,
+        });
+    }
+    return res.status(400).json({ message: 'Incorrect password.' });
+  } catch (e) {
+    return res.status(500).json(e);
+  }
+}
+
 export default {
   createNewCustomer,
+  login,
 };

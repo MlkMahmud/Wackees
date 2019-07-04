@@ -134,4 +134,57 @@ describe('Customer API', () => {
         });
     });
   });
+  describe('Customer Login', () => {
+    it('Should log an existing user in', (done) => {
+      const existingUser = {
+        email: 'almalikmahmud@gmail.com',
+        password: 'mlkmahmud',
+      };
+      chai.request(app)
+        .post('/api/v1/auth/login/customers')
+        .set('Content-Type', 'application/x-www-form-urlencoded')
+        .send(existingUser)
+        .end((err, res) => {
+          expect(err).to.be.null;
+          expect(res).to.have.status(200);
+          expect(res.body).to.have.property('name', 'Malik');
+          expect(res.body).to.have.property('email', 'almalikmahmud@gmail.com');
+          expect(res.body).to.have.property('image');
+          expect(res.body).to.have.property('cart', null);
+          done();
+        });
+    });
+    it("Should return an error message if user doesn't exist", (done) => {
+      const nonExistentUser = {
+        email: 'random@email.com',
+        password: 'arandomstring',
+      };
+      chai.request(app)
+        .post('/api/v1/auth/login/customers')
+        .set('Contetn-Type', 'application/x-www-form-urlencoded')
+        .send(nonExistentUser)
+        .end((err, res) => {
+          expect(err).to.be.null;
+          expect(res).to.have.status(400);
+          expect(res.body).to.have.property('message', "Can't find a customer with the given email address.");
+          done();
+        });
+    });
+    it('Should return an error message if password is incorrect', (done) => {
+      const user = {
+        email: 'almalikmahmud@gmail.com',
+        password: 'wrongpassword',
+      };
+      chai.request(app)
+        .post('/api/v1/auth/login/customers')
+        .set('Content-Type', 'application/x-www-form-urlencoded')
+        .send(user)
+        .end((err, res) => {
+          expect(err).to.be.null;
+          expect(res).to.have.status(400);
+          expect(res.body).to.have.property('message', 'Incorrect password.');
+          done();
+        });
+    });
+  });
 });
