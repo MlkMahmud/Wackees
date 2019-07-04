@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "npx mocha --recursive --timeout 10000 --exit --require @babel/register,@babel/polyfill",
+    "test": "nyc mocha --recursive --timeout 10000 --exit --require @babel/register,@babel/polyfill",
     "server": "nodemon --exec babel-node server/src/index",
     "coverage": "nyc report --reporter=text-lcov | coveralls"
   },
