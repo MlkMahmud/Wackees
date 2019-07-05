@@ -26,7 +26,7 @@ describe('Customer API', () => {
       const { name, email } = user;
       chai
         .request(app)
-        .post('/api/v1/auth/register/customers')
+        .post('/api/v1/auth/register/customer')
         .set('Content-Type', 'application/x-www-form-urlencoded')
         .send(user)
         .end((err, res) => {
@@ -55,14 +55,14 @@ describe('Customer API', () => {
       };
       chai
         .request(app)
-        .post('/api/v1/auth/register/customers')
+        .post('/api/v1/auth/register/customer')
         .set('Content-Type', 'application/x-www-form-urlencoded')
         .send(user)
         .end((err, res) => {
           expect(res.status).to.equal(400);
           expect(res.body).to.have.property(
             'message',
-            'User with given email/name already exists',
+            'customer with given email/name already exists',
           );
           // Ensure the user with duplicate name was not add to DB
           Customer.findAll()
@@ -81,7 +81,7 @@ describe('Customer API', () => {
       };
       chai
         .request(app)
-        .post('/api/v1/auth/register/customers')
+        .post('/api/v1/auth/register/customer')
         .set('Content-Type', 'application/x-www-form-urlencoded')
         .send(user)
         .end((err, res) => {
@@ -101,7 +101,7 @@ describe('Customer API', () => {
       };
       chai
         .request(app)
-        .post('/api/v1/auth/register/customers')
+        .post('/api/v1/auth/register/customer')
         .set('Content-Type', 'application/x-www-form-urlencoded')
         .send(user)
         .end((err, res) => {
@@ -121,7 +121,7 @@ describe('Customer API', () => {
       };
       chai
         .request(app)
-        .post('/api/v1/auth/register/customers')
+        .post('/api/v1/auth/register/customer')
         .set('Content-Type', 'application/x-www-form-urlencoded')
         .send(user)
         .end((err, res) => {
@@ -141,7 +141,7 @@ describe('Customer API', () => {
         password: 'mlkmahmud',
       };
       chai.request(app)
-        .post('/api/v1/auth/login/customers')
+        .post('/api/v1/auth/login/customer')
         .set('Content-Type', 'application/x-www-form-urlencoded')
         .send(existingUser)
         .end((err, res) => {
@@ -160,7 +160,7 @@ describe('Customer API', () => {
         password: 'arandomstring',
       };
       chai.request(app)
-        .post('/api/v1/auth/login/customers')
+        .post('/api/v1/auth/login/customer')
         .set('Contetn-Type', 'application/x-www-form-urlencoded')
         .send(nonExistentUser)
         .end((err, res) => {
@@ -176,7 +176,7 @@ describe('Customer API', () => {
         password: 'wrongpassword',
       };
       chai.request(app)
-        .post('/api/v1/auth/login/customers')
+        .post('/api/v1/auth/login/customer')
         .set('Content-Type', 'application/x-www-form-urlencoded')
         .send(user)
         .end((err, res) => {
