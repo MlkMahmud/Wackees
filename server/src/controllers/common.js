@@ -109,8 +109,13 @@ async function login(req, res) {
   }
 }
 
+function logOut(req, res) {
+  res.clearCookie('token').json('Logged out');
+}
+
 export default {
   fetchAllRestaurants,
   createNewUser,
   login,
+  logOut,
 };

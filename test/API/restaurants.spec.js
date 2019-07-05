@@ -20,7 +20,8 @@ describe('Restaurant API', () => {
         password: 'refueled!',
       };
       const { name, email } = newRestaurant;
-      chai.request(app)
+      chai
+        .request(app)
         .post('/api/v1/auth/register/restaurant')
         .set('Content-Type', 'application/x-www-form-urlencoded')
         .send(newRestaurant)
@@ -124,6 +125,68 @@ describe('Restaurant API', () => {
             'message',
             'Name cannot be blank or contain alphanumeric characters',
           );
+          done();
+        });
+    });
+  });
+  describe('Restaurant Login', () => {
+    it('Should log an existing user in', (done) => {
+      const existingUser = {
+        email: 'chickenrep@gmail.com',
+        password: 'refueled!',
+      };
+      chai
+        .request(app)
+        .post('/api/v1/auth/login/restaurant')
+        .set('Content-Type', 'application/x-www-form-urlencoded')
+        .send(existingUser)
+        .end((err, res) => {
+          expect(err).to.be.null;
+          expect(res).to.have.status(200);
+          expect(res.body).to.have.property('name', 'Chicken Republic');
+          expect(res.body).to.have.property(
+            'email',
+            'chickenrep@gmail.com',
+          );
+          expect(res.body).to.have.property('image');
+          expect(res.body).to.have.property('menu', null);
+          done();
+        });
+    });
+    it("Should return an error message if user doesn't exist", (done) => {
+      const nonExistentUser = {
+        email: 'random@email.com',
+        password: 'arandomstring',
+      };
+      chai
+        .request(app)
+        .post('/api/v1/auth/login/restaurant')
+        .set('Contetn-Type', 'application/x-www-form-urlencoded')
+        .send(nonExistentUser)
+        .end((err, res) => {
+          expect(err).to.be.null;
+          expect(res).to.have.status(400);
+          expect(res.body).to.have.property(
+            'message',
+            "Can't find a restaurant with the given email address.",
+          );
+          done();
+        });
+    });
+    it('Should return an error message if password is incorrect', (done) => {
+      const user = {
+        email: 'almalikmahmud@gmail.com',
+        password: 'wrongpassword',
+      };
+      chai
+        .request(app)
+        .post('/api/v1/auth/login/customer')
+        .set('Content-Type', 'application/x-www-form-urlencoded')
+        .send(user)
+        .end((err, res) => {
+          expect(err).to.be.null;
+          expect(res).to.have.status(400);
+          expect(res.body).to.have.property('message', 'Incorrect password.');
           done();
         });
     });
