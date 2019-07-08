@@ -25,7 +25,7 @@ export const Restaurant = db.define('restaurant', {
 
   image: {
     type: sequelize.STRING,
-    defaultValue: 'http://bit.ly/2Gh5Fg8',
+    defaultValue: 'https://bit.ly/2XujZ0x',
   },
 
   isAdmin: {

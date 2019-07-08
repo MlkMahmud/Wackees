@@ -10,7 +10,7 @@ export const Customer = db.define('customer', {
 
   image: {
     type: sequelize.STRING,
-    defaultValue: 'https://bit.ly/2D2HOAj',
+    defaultValue: 'http://bit.ly/2FvrQjm',
     set(val) {
       this.setDataValue('image', val);
     },

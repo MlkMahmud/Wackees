@@ -33,8 +33,10 @@
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",
+    "cloudinary": "^1.14.0",
     "cookie-parser": "^1.4.4",
     "express": "^4.17.1",
+    "express-fileupload": "^1.1.5",
     "jsonwebtoken": "^8.5.1",
     "pg": "^7.11.0",
     "pg-hstore": "^2.3.3",

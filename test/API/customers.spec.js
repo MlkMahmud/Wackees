@@ -34,7 +34,6 @@ describe('Customer API', () => {
           expect(res).to.have.status(201);
           expect(res.body).to.have.property('name', name);
           expect(res.body).to.have.property('email', email);
-          expect(res.body).to.have.property('cart', null);
           expect(res.body).to.have.property('image');
           // CHECK THE DB TO ENSURE OUR USER WAS ADDED
           Customer.findOne({ where: { name } })

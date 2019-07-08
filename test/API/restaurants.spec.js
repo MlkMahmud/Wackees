@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-expressions */
-import { describe, it } from 'mocha';
+import { describe, it, before } from 'mocha';
 import chai from 'chai';
 import sequelize from 'sequelize';
 import chaiHttp from 'chai-http';
@@ -10,6 +10,7 @@ import { Restaurant } from '../../server/src/models/Restaurant';
 const { expect } = chai;
 const { Op } = sequelize;
 chai.use(chaiHttp);
+const agent = chai.request.agent(app);
 
 describe('Restaurant API', () => {
   describe('Restaurant registration', () => {
@@ -31,7 +32,6 @@ describe('Restaurant API', () => {
           expect(res.body).to.have.property('name', name);
           expect(res.body).to.have.property('email', email);
           expect(res.body).to.have.property('image');
-          expect(res.body).to.have.property('menu', null);
           Restaurant.findOne({ where: { [Op.or]: [{ email }, { name }] } })
             .then((restaurant) => {
               expect(restaurant).to.be.not.null;
@@ -59,13 +59,7 @@ describe('Restaurant API', () => {
             'message',
             'restaurant with given email/name already exists',
           );
-          // Ensure the user with duplicate name was not add to DB
-          Restaurant.findAll()
-            .then((restaurants) => {
-              expect(restaurants).to.have.lengthOf(1);
-              done();
-            })
-            .catch(e => done(e));
+          done();
         });
     });
     it('Should prompt the user with an error message if email is invalid', (done) => {
@@ -149,7 +143,7 @@ describe('Restaurant API', () => {
             'chickenrep@gmail.com',
           );
           expect(res.body).to.have.property('image');
-          expect(res.body).to.have.property('menu', null);
+          expect(res.body.meals).to.have.lengthOf(0);
           done();
         });
     });
@@ -175,18 +169,108 @@ describe('Restaurant API', () => {
     });
     it('Should return an error message if password is incorrect', (done) => {
       const user = {
-        email: 'almalikmahmud@gmail.com',
+        email: 'chickenrep@gmail.com',
         password: 'wrongpassword',
       };
       chai
         .request(app)
-        .post('/api/v1/auth/login/customer')
+        .post('/api/v1/auth/login/restaurant')
         .set('Content-Type', 'application/x-www-form-urlencoded')
         .send(user)
         .end((err, res) => {
           expect(err).to.be.null;
           expect(res).to.have.status(400);
           expect(res.body).to.have.property('message', 'Incorrect password.');
+          done();
+        });
+    });
+  });
+  describe('Fetch Restaurants', () => {
+    it('Should return an array of all resturants', (done) => {
+      chai.request(app)
+        .get('/api/v1/restaurants')
+        .end((err, res) => {
+          expect(res).to.have.status(200);
+          expect(res.body).to.have.lengthOf(1);
+          done();
+        });
+    });
+  });
+  describe('GET Meals', () => {
+    before((done) => {
+      const user = {
+        email: 'chickenrep@gmail.com',
+        password: 'refueled!',
+      };
+      agent
+        .post('/api/v1/auth/login/restaurant')
+        .set('Content-Type', 'application/x-www-form-urlencoded')
+        .send(user)
+        .end(() => done());
+    });
+    it('Should return an array of a restaurant\'s meals', (done) => {
+      agent
+        .get('/api/v1/meals')
+        .end((err, res) => {
+          expect(res).to.have.status(200);
+          // We have not added any meals so its empty here
+          expect(res.body).to.have.lengthOf(0);
+          done();
+        });
+    });
+  });
+  describe('POST meals', () => {
+    it('Should add a meal to a restaurant\'s DB', (done) => {
+      agent
+        .post('/api/v1/meals')
+        .field('name', 'Chickwizz')
+        .field('price', '1000')
+        .field('available', 'true')
+        .attach('image', './test/API/test.jpg', 'test.jpg')
+        .end((err, res) => {
+          expect(err).to.be.null;
+          expect(res).to.redirect;
+          expect(res.body).to.have.lengthOf(1);
+          done();
+        });
+    });
+    it('Should set a default image for a new meal if image field is null', (done) => {
+      agent
+        .post('/api/v1/meals')
+        .field('name', 'Refuel Meal')
+        .field('price', '500')
+        .field('available', 'true')
+        .end((err, res) => {
+          expect(err).to.be.null;
+          expect(res).to.redirect;
+          expect(res.body).to.have.lengthOf(2);
+          res.body.forEach((meal) => {
+            expect(meal.image).to.not.be.null;
+          });
+          done();
+        });
+    });
+    it('Should return a 400 error if an invalid name is provided', (done) => {
+      agent
+        .post('/api/v1/meals')
+        .field('name', '')
+        .field('price', '500')
+        .field('available', 'true')
+        .end((err, res) => {
+          expect(res).to.have.status(400);
+          expect(res.body).to.have.property('message', 'Name Cannot be blank or contain numbers.');
+          done();
+        });
+    });
+    it('Should return a 400 error if an invalid price is provided', (done) => {
+      agent
+        .post('/api/v1/meals')
+        .field('name', 'Fried Rice')
+        .field('price', 'five hundred')
+        .field('available', 'true')
+        .end((err, res) => {
+          expect(res).to.have.status(400);
+          expect(res.body).to.have.property('message', 'Please Input a valid price.');
           done();
         });
     });
