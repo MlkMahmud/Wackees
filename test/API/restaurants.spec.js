@@ -5,7 +5,7 @@ import sequelize from 'sequelize';
 import chaiHttp from 'chai-http';
 // import db from '../../server/src/config/db';
 import app from '../../server/src';
-import { Restaurant } from '../../server/src/models/Restaurant';
+import { Restaurant, Meal } from '../../server/src/models/Restaurant';
 
 const { expect } = chai;
 const { Op } = sequelize;
@@ -271,6 +271,36 @@ describe('Restaurant API', () => {
         .end((err, res) => {
           expect(res).to.have.status(400);
           expect(res.body).to.have.property('message', 'Please Input a valid price.');
+          done();
+        });
+    });
+  });
+  describe('PUT meals', () => {
+    let mealId;
+    // Get the meal id for the first meal in the db
+    before(((done) => {
+      Meal.findOne({ where: { name: 'Chickwizz' } })
+        .then(({ id }) => {
+          mealId = id;
+          done();
+        })
+        .catch(e => done(e));
+    }));
+    it('Should update the selected meal', (done) => {
+      agent
+        .put(`/api/v1/meals/${mealId}`)
+        .field('name', 'Double Chickwizz')
+        .field('price', '1500')
+        .end((err, res) => {
+          expect(err).to.be.null;
+          expect(res).to.redirect;
+          // Updated meal will be last in meals array
+          const updatedMeal = res.body[res.body.length - 1];
+          expect(updatedMeal).to.have.property('name', 'Double Chickwizz');
+          expect(updatedMeal).to.have.property('price', '1500');
+          expect(updatedMeal).to.have.property('available', false);
+          expect(updatedMeal).to.have.property('id', mealId);
+          expect(updatedMeal.image).to.not.be.null;
           done();
         });
     });
