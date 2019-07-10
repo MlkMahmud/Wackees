@@ -1,5 +1,5 @@
 import { Restaurant, Meal } from '../models/Restaurant';
-import { Order } from '../models/Customer';
+// import { Order } from '../models/Customer';
 import validator from '../utils/validate-input';
 
 const { isValidName, isValidPrice } = validator;
@@ -17,7 +17,7 @@ async function addNewMeal(req, res) {
 
   if (isValidName(name) && isValidPrice(price)) {
     try {
-      if (available !== 'true' || available !== 'false') available = 'false';
+      if (available !== 'true' && available !== 'false') available = 'false';
       const restaurant = await Restaurant.findByPk(req.userId);
 
       await Meal.create({
@@ -48,7 +48,7 @@ async function updateMeal(req, res) {
 
   if (isValidName(name) && isValidPrice(price)) {
     try {
-      if (available !== 'true' || available !== 'false') available = 'false';
+      if (available !== 'true' && available !== 'false') available = 'false';
       const restaurant = await Restaurant.findByPk(req.userId);
       const payload = {
         name,
@@ -90,9 +90,31 @@ async function deleteMeal(req, res) {
   }
 }
 
+function getMenu(req, res) {
+  Restaurant.findByPk(req.userId)
+    .then((restaurant) => {
+      const menu = restaurant.menu ? restaurant.menu : [];
+      res.status(200).json(menu);
+    })
+    .catch(() => res.status(500).json({ message: 'Internal Server Error' }));
+}
+
+async function setMenu(req, res) {
+  try {
+    const restaurant = await Restaurant.findByPk(req.userId, { include: [Meal] });
+    restaurant.menu = restaurant.meals.filter(meal => meal.available);
+    await restaurant.save();
+    res.redirect('/api/v1/menu');
+  } catch (e) {
+    res.status(500).json({ message: 'Internal Server Error' });
+  }
+}
+
 export default {
   fetchAllMeals,
   addNewMeal,
   updateMeal,
   deleteMeal,
+  getMenu,
+  setMenu,
 };

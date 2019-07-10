@@ -36,12 +36,8 @@ export const Restaurant = db.define('restaurant', {
 
   menu: {
     type: sequelize.ARRAY(sequelize.JSON),
-  },
-},
-{
-  setterMethods: {
-    setMenu(value) {
-      this.setDataValue('menu', value);
+    set(val) {
+      this.setDataValue('menu', val);
     },
   },
 });

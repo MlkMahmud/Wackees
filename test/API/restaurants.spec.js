@@ -327,4 +327,37 @@ describe('Restaurant API', () => {
         });
     });
   });
+  describe('SET MENU', () => {
+    before((done) => {
+      agent
+        .post('/api/v1/meals')
+        .field('name', 'Pasta')
+        .field('price', '1200')
+        .end((err, res) => {
+          expect(err).to.be.null;
+          const newMeal = res.body[res.body.length - 1];
+          expect(newMeal).to.have.property('name', 'Pasta');
+          expect(newMeal).to.have.property('available', false);
+          done();
+        });
+    });
+    it('Should add all available meals to the restaurant\'s menu', (done) => {
+      agent
+        .post('/api/v1/menu')
+        .end(() => done());
+    });
+  });
+  describe('GET MENU', () => {
+    it('Should return an array of a restaurant\'s available meals', (done) => {
+      agent
+        .get('/api/v1/menu')
+        .end((err, res) => {
+          expect(err).to.be.null;
+          expect(res).to.have.status(200);
+          expect(res.body).to.have.lengthOf(1);
+          res.body.forEach(meal => expect(meal.available).to.be.true);
+          done();
+        });
+    });
+  });
 });
