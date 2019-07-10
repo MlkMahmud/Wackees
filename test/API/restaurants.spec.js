@@ -275,7 +275,7 @@ describe('Restaurant API', () => {
         });
     });
   });
-  describe('PUT meals', () => {
+  describe('PUT meal', () => {
     let mealId;
     // Get the meal id for the first meal in the db
     before(((done) => {
@@ -301,6 +301,28 @@ describe('Restaurant API', () => {
           expect(updatedMeal).to.have.property('available', false);
           expect(updatedMeal).to.have.property('id', mealId);
           expect(updatedMeal.image).to.not.be.null;
+          done();
+        });
+    });
+  });
+  describe('DELETE meal', () => {
+    let mealId;
+    before(((done) => {
+      Meal.findOne({ where: { name: 'Double Chickwizz' } })
+        .then(({ id }) => {
+          mealId = id;
+          done();
+        })
+        .catch(e => done(e));
+    }));
+    it('Should delete a single meal from the DB', (done) => {
+      agent
+        .delete(`/api/v1/meals/${mealId}`)
+        .end((err, res) => {
+          expect(err).to.be.null;
+          expect(res).to.redirect;
+          expect(res.body).to.have.lengthOf(1);
+          res.body.forEach(meal => expect(meal).to.not.have.property('name', 'Double Chickwizz'));
           done();
         });
     });

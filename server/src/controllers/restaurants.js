@@ -71,8 +71,28 @@ async function updateMeal(req, res) {
   }
 }
 
+async function deleteMeal(req, res) {
+  const { id } = req.params;
+
+  try {
+    const restaurant = await Restaurant.findByPk(req.userId);
+
+    await Meal.destroy({
+      where: {
+        id,
+        restaurantId: restaurant.id,
+      },
+    });
+
+    res.redirect('/api/v1/meals');
+  } catch (e) {
+    res.status(500).json({ message: 'Internal Server Error' });
+  }
+}
+
 export default {
   fetchAllMeals,
   addNewMeal,
   updateMeal,
+  deleteMeal,
 };
