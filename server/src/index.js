@@ -1,6 +1,7 @@
 import express from 'express';
 import cookieParser from 'cookie-parser';
 import fileUpload from 'express-fileupload';
+import cors from 'cors';
 import dotenv from 'dotenv';
 import commonRoutes from './routes/common';
 import restaurantRoutes from './routes/restaurants';
@@ -8,6 +9,7 @@ import restaurantRoutes from './routes/restaurants';
 dotenv.config();
 const app = express();
 const port = process.env.PORT;
+app.use(cors({ origin: true }));
 app.use(fileUpload({
   useTempFiles: true,
 }));

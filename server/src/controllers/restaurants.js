@@ -1,5 +1,5 @@
 import { Restaurant, Meal } from '../models/Restaurant';
-// import { Order } from '../models/Customer';
+import { Order } from '../models/Customer';
 import validator from '../utils/validate-input';
 
 const { isValidName, isValidPrice } = validator;
@@ -110,6 +110,21 @@ async function setMenu(req, res) {
   }
 }
 
+function getOrders(req, res) {
+  Restaurant.findByPk(req.userId, { includ: [Order] })
+    .then(restaurant => res.status(200).json(restaurant.orders))
+    .catch(() => res.status(500).json({ message: 'Internal Server Error' }));
+}
+
+function updateProfilePhoto(req, res) {
+  const { image } = res.locals;
+  Restaurant.update({ image }, {
+    where: { id: req.userId },
+  })
+    .then(restaurant => res.status(200).json(restaurant.image))
+    .catch(() => res.status(500).json({ message: 'Internal Server Error' }));
+}
+
 export default {
   fetchAllMeals,
   addNewMeal,
@@ -117,4 +132,6 @@ export default {
   deleteMeal,
   getMenu,
   setMenu,
+  getOrders,
+  updateProfilePhoto,
 };

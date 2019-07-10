@@ -12,6 +12,8 @@ const {
   deleteMeal,
   getMenu,
   setMenu,
+  getOrders,
+  updateProfilePhoto,
 } = controllers;
 
 router.route('/api/v1/meals')
@@ -25,5 +27,8 @@ router.route('/api/v1/meals/:id')
 router.route('/api/v1/menu')
   .get(verifyToken, getMenu)
   .post(verifyToken, setMenu);
+
+router.route('/api/v1/orders').get(verifyToken, getOrders);
+router.route('/api/v1/upload').post(verifyToken, imageUploader, updateProfilePhoto);
 
 export default router;
