@@ -20,6 +20,18 @@ async function fetchAllRestaurants(req, res) {
   }
 }
 
+function getRestaurantMenu(req, res) {
+  const { id } = req.params;
+  Restaurant.findByPk(id, {
+    attributes: ['name', 'image', 'menu'],
+  })
+    .then((restaurant) => {
+      restaurant.menu = restaurant.menu || [];
+      res.status(200).json(restaurant);
+    })
+    .catch(() => res.status(500).json({ message: 'Internal Server Error' }));
+}
+
 async function createNewUser(req, res) {
   const { role } = req.params;
   let Model;
@@ -119,6 +131,7 @@ function logOut(req, res) {
 
 export default {
   fetchAllRestaurants,
+  getRestaurantMenu,
   createNewUser,
   login,
   logOut,

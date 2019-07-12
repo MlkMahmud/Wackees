@@ -8,9 +8,12 @@ const {
   createNewUser,
   login,
   logOut,
+  getRestaurantMenu,
 } = controllers;
 
 router.route('/api/v1/restaurants').get(fetchAllRestaurants);
+
+router.route('/api/v1/restaurants/:id').get(getRestaurantMenu);
 
 router.route('/api/v1/auth/register/:role').post(createNewUser);
 

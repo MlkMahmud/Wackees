@@ -5,6 +5,7 @@ import cors from 'cors';
 import dotenv from 'dotenv';
 import commonRoutes from './routes/common';
 import restaurantRoutes from './routes/restaurants';
+import customerRoutes from './routes/customers';
 
 dotenv.config();
 const app = express();
@@ -18,7 +19,8 @@ app.use(express.json());
 app.use(cookieParser());
 app.use(commonRoutes);
 app.use(restaurantRoutes);
+app.use(customerRoutes);
 
-app.listen(port, () => console.log(`Running on port:${port}`));
+app.listen(port);
 
 export default app;

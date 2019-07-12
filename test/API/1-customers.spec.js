@@ -1,13 +1,18 @@
 /* eslint-disable no-unused-expressions */
-import { describe, it, before } from 'mocha';
+import {
+  describe, it, before, after,
+} from 'mocha';
 import chai from 'chai';
 import chaiHttp from 'chai-http';
 import db from '../../server/src/config/db';
 import app from '../../server/src';
 import { Customer } from '../../server/src/models/Customer';
+import { Restaurant } from '../../server/src/models/Restaurant';
+
 
 const { expect } = chai;
 chai.use(chaiHttp);
+const agent = chai.request.agent(app);
 
 before((done) => {
   db.sync({ force: true })
@@ -182,6 +187,137 @@ describe('Customer API', () => {
           expect(err).to.be.null;
           expect(res).to.have.status(400);
           expect(res.body).to.have.property('message', 'Incorrect password.');
+          done();
+        });
+    });
+  });
+  describe('GET Cart', () => {
+    before((done) => {
+      agent
+        .post('/api/v1/auth/login/customer')
+        .set('Content-Type', 'application/x-www-form-urlencoded')
+        .send({ email: 'almalikmahmud@gmail.com', password: 'mlkmahmud' })
+        .end(() => done());
+    });
+    it('Should return the contents of a customer\'s cart', (done) => {
+      agent
+        .get('/api/v1/cart')
+        .end((err, res) => {
+          expect(err).to.be.null;
+          expect(res).to.have.status(200);
+          expect(res.body).to.have.lengthOf(0);
+          done();
+        });
+    });
+  });
+  describe('Add To Cart', () => {
+    let id;
+    let mealId;
+    // Fetch restaurant and meal id
+    before((done) => {
+      Restaurant.findOne({
+        where: { name: 'Chicken Republic' },
+      })
+        .then((restaurant) => {
+          const { id: restaurantId } = restaurant;
+          id = restaurantId;
+          mealId = restaurant.menu[0].id;
+          done();
+        })
+        .catch(() => done());
+    });
+    it('Should add an item from a restaurant\'s into a customer\'s cart', (done) => {
+      agent
+        .post(`/api/v1/restaurants/${id}/${mealId}`)
+        .end((err, res) => {
+          expect(err).to.be.null;
+          expect(res).to.redirect;
+          done();
+        });
+    });
+    after((done) => {
+      agent
+        .get('/api/v1/cart')
+        .end((err, res) => {
+          expect(err).to.be.null;
+          expect(res.body).to.have.lengthOf(1);
+          done();
+        });
+    });
+  });
+  describe('Remove From Cart', () => {
+    let id;
+    before((done) => {
+      Customer.findOne({
+        where: { email: 'almalikmahmud@gmail.com' },
+      })
+        .then((customer) => {
+          const { id: cId } = customer.cart[0];
+          id = cId;
+          done();
+        })
+        .catch(e => done(e));
+    });
+    it('Should remove the selected item from the customer\'s cart', (done) => {
+      agent
+        .delete(`/api/v1/cart/${id}`)
+        .end((err, res) => {
+          expect(err).to.be.null;
+          expect(res).to.redirect;
+          done();
+        });
+    });
+    after((done) => {
+      agent
+        .get('/api/v1/cart')
+        .end((err, res) => {
+          expect(err).to.be.null;
+          expect(res.body).to.have.lengthOf(0);
+          done();
+        });
+    });
+  });
+  describe('Checkout', () => {
+    before((done) => {
+      Restaurant.findOne({
+        where: { name: 'Chicken Republic' },
+      })
+        .then((restaurant) => {
+          const { id } = restaurant;
+          const { id: item } = restaurant.menu[0];
+          agent
+            .post(`/api/v1/restaurants/${id}/${item}`)
+            .end(() => done());
+        })
+        .catch(e => done(e));
+    });
+    it('Should checkout all items in a customer\'s cart', (done) => {
+      agent
+        .get('/api/v1/checkout')
+        .end((err, res) => {
+          expect(err).to.be.null;
+          expect(res).to.redirect;
+          done();
+        });
+    });
+    after((done) => {
+      agent
+        .get('/api/v1/cart')
+        .end((err, res) => {
+          expect(res).to.have.status(200);
+          expect(res.body).to.have.lengthOf(0);
+          done();
+        });
+    });
+  });
+  describe('Get History', () => {
+    it('Should return an array of a customer\'s purchased items', (done) => {
+      agent
+        .get('/api/v1/history')
+        .end((err, res) => {
+          expect(err).to.be.null;
+          expect(res).to.have.status(200);
+          expect(res.body).to.have.lengthOf(1);
           done();
         });
     });
