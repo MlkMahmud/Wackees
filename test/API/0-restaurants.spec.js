@@ -1,9 +1,8 @@
 /* eslint-disable no-unused-expressions */
-import { describe, it, before } from 'mocha';
+import { describe, it, before, after } from 'mocha';
 import chai from 'chai';
 import sequelize from 'sequelize';
 import chaiHttp from 'chai-http';
-// import db from '../../server/src/config/db';
 import app from '../../server/src';
 import { Restaurant, Meal } from '../../server/src/models/Restaurant';
 
@@ -356,6 +355,71 @@ describe('Restaurant API', () => {
           expect(res).to.have.status(200);
           expect(res.body).to.have.lengthOf(1);
           res.body.forEach(meal => expect(meal.available).to.be.true);
+          done();
+        });
+    });
+  });
+  describe('Get Orders', () => {
+    it('Should return all orders made to a restaurant', (done) => {
+      agent
+        .get('/api/v1/orders')
+        .end((err, res) => {
+          expect(res).to.have.status(200);
+          expect(res.body).to.have.lengthOf(0);
+          done();
+        });
+    });
+  });
+  describe('Update profile photo', () => {
+    let oldPhoto;
+    let newPhoto;
+    before((done) => {
+      Restaurant.findOne({
+        where: { name: 'Chicken Republic' },
+      })
+        .then(({ image }) => {
+          oldPhoto = image;
+          done();
+        })
+        .catch(e => done(e));
+    });
+    it('Should update a restaurant\'s profile picture', (done) => {
+      agent
+        .post('/api/v1/upload')
+        .attach('image', './test/API/test.jpg', 'test.jpg')
+        .end((err, res) => {
+          expect(res).to.have.status(200);
+          expect(res.body).to.have.property('message', 'Success');
+          expect(res.body.image).to.not.be.null;
+          newPhoto = res.body.image;
+          done();
+        });
+    });
+    after((done) => {
+      Restaurant.findOne({
+        where: { name: 'Chicken Republic' },
+      })
+        .then(({ image }) => {
+          expect(oldPhoto).to.not.equal(image);
+          expect(newPhoto).to.equal(image);
+          done();
+        })
+        .catch(e => done(e));
+    })
+  });
+  describe('Log Out', () => {
+    it('Should log a user out', (done) => {
+      agent
+        .get('/api/v1/auth/logout')
+        .end(() => done());
+    });
+    after((done) => {
+      // Try accessing a protected route
+      agent
+        .get('/api/v1/meals')
+        .end((err, res) => {
+          expect(res).to.have.status(400);
+          expect(res.body).to.have.property('message', 'You must be logged in');
           done();
         });
     });
