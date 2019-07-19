@@ -6,7 +6,8 @@
   "scripts": {
     "test": "nyc mocha --recursive --timeout 20000 --exit --require @babel/register,@babel/polyfill",
     "server": "nodemon --exec babel-node server/src/index",
-    "coverage": "nyc report --reporter=text-lcov | coveralls"
+    "coverage": "nyc report --reporter=text-lcov | coveralls",
+    "client": "webpack-dev-server --config webpack.config.js --open --mode development"
   },
   "keywords": [],
   "author": "Malik Mahmud <almalikmahmud@gmail.com>",
@@ -65,7 +66,15 @@
     "pg-hstore": "^2.3.3",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
+    "react-redux": "^7.1.0",
     "react-router-dom": "^5.0.1",
+    "redux": "^4.0.4",
+    "redux-thunk": "^2.3.0",
     "sequelize": "^5.9.0"
-  }
+  },
+  "browserslist": [
+    "last 1 version",
+    "> 1%",
+    "IE 10"
+  ]
 }

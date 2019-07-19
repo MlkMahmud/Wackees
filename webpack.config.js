@@ -6,7 +6,6 @@ const UglifyJs = require('uglifyjs-webpack-plugin');
 const ScriptExt = require('script-ext-html-webpack-plugin');
 
 module.exports = {
-  mode: 'production',
   entry: './client/src',
   output: {
     path: path.resolve(__dirname, 'client', 'dist'),
@@ -64,7 +63,6 @@ module.exports = {
       filename: 'index.html',
       template: path.join(__dirname, 'client', 'public', 'index.html'),
       minify: true,
-      favicon: path.join(__dirname, 'client', 'public', 'favicon.ico'),
     }),
 
     new ScriptExt({
