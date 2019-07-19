@@ -2,7 +2,6 @@
   text-decoration: none;
   color: black;
   box-sizing: border-box;
-  outline: none;
   color: black;
 }
 
@@ -46,6 +45,10 @@ body {
   display: inline-block;
   margin-right: 12px;
   font-weight: bolder;
+  font-size: 1rem;
+  border: none;
+  background: none;
+  font-family: 'Roboto Slab', serif;
 }
 
 .nav_link:hover {
@@ -426,4 +429,6 @@ body {
   .cart {
     width: 95%;
   }
+
 }
+
