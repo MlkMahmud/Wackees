@@ -24,7 +24,7 @@ async function addToCart(req, res) {
       const cart = customer.cart || [];
       cart.push(selectedItem);
       customer.cart = cart;
-      customer.save();
+      await customer.save();
       res.redirect('/api/v1/cart');
     }
   } catch (e) {

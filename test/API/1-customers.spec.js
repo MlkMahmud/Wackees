@@ -4,7 +4,6 @@ import {
 } from 'mocha';
 import chai from 'chai';
 import chaiHttp from 'chai-http';
-import db from '../../server/src/config/db';
 import app from '../../server/src';
 import { Customer } from '../../server/src/models/Customer';
 import { Restaurant } from '../../server/src/models/Restaurant';
@@ -13,12 +12,6 @@ import { Restaurant } from '../../server/src/models/Restaurant';
 const { expect } = chai;
 chai.use(chaiHttp);
 const agent = chai.request.agent(app);
-
-before((done) => {
-  db.sync({ force: true })
-    .then(() => done())
-    .catch(() => done());
-});
 
 describe('Customer API', () => {
   describe('Customer registration', () => {

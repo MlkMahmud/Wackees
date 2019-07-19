@@ -1,15 +1,24 @@
 /* eslint-disable no-unused-expressions */
-import { describe, it, before, after } from 'mocha';
+import {
+  describe, it, before, after,
+} from 'mocha';
 import chai from 'chai';
 import sequelize from 'sequelize';
 import chaiHttp from 'chai-http';
 import app from '../../server/src';
+import db from '../../server/src/config/db';
 import { Restaurant, Meal } from '../../server/src/models/Restaurant';
 
 const { expect } = chai;
 const { Op } = sequelize;
 chai.use(chaiHttp);
 const agent = chai.request.agent(app);
+
+before((done) => {
+  db.sync({ force: true })
+    .then(() => done())
+    .catch(() => done());
+});
 
 describe('Restaurant API', () => {
   describe('Restaurant registration', () => {
@@ -405,7 +414,7 @@ describe('Restaurant API', () => {
           done();
         })
         .catch(e => done(e));
-    })
+    });
   });
   describe('Log Out', () => {
     it('Should log a user out', (done) => {

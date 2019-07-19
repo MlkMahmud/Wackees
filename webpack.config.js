@@ -6,6 +6,11 @@ const UglifyJs = require('uglifyjs-webpack-plugin');
 const ScriptExt = require('script-ext-html-webpack-plugin');
 
 module.exports = {
+  devServer: {
+    proxy: {
+      '/api': 'http://localhost:4000',
+    },
+  },
   entry: './client/src',
   output: {
     path: path.resolve(__dirname, 'client', 'dist'),
