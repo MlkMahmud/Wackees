@@ -2,8 +2,8 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-const LoggedOutNavbar = () => (
-  <nav className="navbar">
+const DefaultNavbar = () => (
+  <>
     <Link className="nav_link" to="/">
       <FontAwesomeIcon className="nav_link_icon" icon="home" />
       HOME
@@ -16,7 +16,7 @@ const LoggedOutNavbar = () => (
       <FontAwesomeIcon className="nav_link_icon" icon="user-plus" />
       SIGN UP
     </Link>
-  </nav>
+  </>
 );
 
-export default LoggedOutNavbar;
+export default DefaultNavbar;

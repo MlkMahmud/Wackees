@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import LoggedOutNavbar from './LoggedOutNavbar';
+import DefaultNavbar from './DefaultNavbar';
 import CustomerNavbar from './CustomerNavbar';
 import RestaurantNavbar from './RestaurantNavbar';
 
@@ -15,9 +15,13 @@ const Navbar = ({ user }) => {
       nav = <RestaurantNavbar />;
       break;
     default:
-      nav = <LoggedOutNavbar />;
+      nav = <DefaultNavbar />;
   }
-  return nav;
+  return (
+    <nav className="navbar">
+      {nav}
+    </nav>
+  );
 };
 
 Navbar.propTypes = {

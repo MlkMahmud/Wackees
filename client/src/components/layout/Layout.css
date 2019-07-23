@@ -65,6 +65,11 @@ body {
 
 /*************************************************************HAMBURGER MENU*************************************************************/
 
+.hamburger_icon_btn {
+  background: none;
+  border: none;
+}
+
 .hamburger_icon {
   display: none;
   font-weight: bolder;
@@ -90,6 +95,10 @@ body {
 .close_menu_btn {
   text-align: right;
   font-size: 24px;
+  display: block;
+  width: 100%;
+  background: none;
+  border: none;
 }
 
 .close_menu_btn_icon:hover {
@@ -118,6 +127,9 @@ body {
 .hamburgermenu_nav_link {
   font-weight: bolder;
   font-size: 24px;
+  background: none;
+  border: none;
+  font-family: 'Roboto Slab', serif;
 }
 
 /***toggle hamburger menu ***/
@@ -432,3 +444,8 @@ body {
 
 }
 
+@media (min-width: 651px) {
+  .hamburger_icon_btn {
+    display: none;
+  }
+}

@@ -1,14 +1,17 @@
 import React from 'react';
 import Logo from './Logo';
-import HamburgerIcon from './HamburgerIcon';
 import Navbar from './navbar';
+import DropdownMenu from './dropdown-menu';
+import HamburgerIcon from './HamburgerIcon';
 import '../Layout.css';
+
 
 const Header = () => (
   <header className="header">
     <Logo />
     <Navbar />
     <HamburgerIcon />
+    <DropdownMenu />
   </header>
 );
 
