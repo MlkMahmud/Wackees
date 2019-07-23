@@ -3,6 +3,7 @@ import Logo from './Logo';
 import Navbar from './navbar';
 import DropdownMenu from './dropdown-menu';
 import HamburgerIcon from './HamburgerIcon';
+import ErrorPrompt from '../misc/ErrorPrompt';
 import { changeHeaderBG } from '../../../utils/handlers';
 import '../Layout.css';
 
@@ -15,6 +16,7 @@ const Header = () => {
       <Navbar />
       <HamburgerIcon />
       <DropdownMenu />
+      <ErrorPrompt />
     </header>
   );
 };

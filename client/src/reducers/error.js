@@ -5,6 +5,8 @@ const error = (state = null, { type, message }) => {
         type,
         message,
       };
+    case 'CLEAR ERROR':
+      return null;
     default:
       return state;
   }

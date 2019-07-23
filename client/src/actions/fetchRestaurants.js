@@ -2,7 +2,7 @@ const fetchRestaurants = () => (dispatch) => {
   fetch('/api/v1/restaurants')
     .then((res) => {
       if (res.ok) return res.json();
-      throw new Error('Error fetching restaurants');
+      throw new Error("Can't fetch restaurants, please check internet connection and try again");
     })
     .then((restaurants) => {
       dispatch({
@@ -10,10 +10,15 @@ const fetchRestaurants = () => (dispatch) => {
         payload: restaurants,
       });
     })
-    .catch(e => dispatch({
-      type: 'SERVER ERROR',
-      message: e.message,
-    }));
+    .catch((e) => {
+      dispatch({
+        type: 'SERVER ERROR',
+        message: e.message,
+      });
+      setTimeout(() => dispatch({
+        type: 'CLEAR ERROR',
+      }), 3000);
+    });
 };
 
 export default fetchRestaurants;

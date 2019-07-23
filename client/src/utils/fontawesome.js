@@ -31,6 +31,7 @@ import {
   faTrashAlt,
   faShoppingCart,
   faCreditCard,
+  faFrown,
 } from '@fortawesome/free-solid-svg-icons';
 
 library.add(
@@ -63,6 +64,7 @@ library.add(
   faTrashAlt,
   faShoppingCart,
   faCreditCard,
+  faFrown,
 );
 
 export default library;

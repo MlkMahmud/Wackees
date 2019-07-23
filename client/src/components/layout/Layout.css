@@ -427,6 +427,26 @@ body {
 }
 
 
+/******************************************************** ERROR PROMPT **********************************************************/
+.error_prompt {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  width: 500px;
+  max-width: 90%;
+  padding: 15px 20px;
+  border-radius: 5px;
+  background: #d53032;
+}
+
+.error_prompt .fa-frown > path {
+  fill: #fff;
+}
+
+.error_message {
+  color: #fff;
+}
+
 
 /*************************************************MEDIA QUERIES*****************************************************************/
 @media (max-width: 650px) {
