@@ -6,6 +6,7 @@ import ProfilePic from './ProfilePic';
 import CustomerMenu from './CustomerMenu';
 import RestaurantMenu from './RestaurantMenu';
 import DefaultMenu from './DefaultMenu';
+import { closeDropdownMenu } from '../../../../utils/handlers';
 
 const DropdownMenu = ({ user }) => {
   let menu;
@@ -21,7 +22,10 @@ const DropdownMenu = ({ user }) => {
       break;
   }
   return (
-    <div className="hamburgermenu">
+    <div
+      className="hamburgermenu"
+      onClick={closeDropdownMenu}
+    >
       <CloseMenuBtn />
       <ProfilePic />
       {menu}
