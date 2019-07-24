@@ -61,14 +61,19 @@ async function createNewUser(req, res) {
         { expiresIn: '24h' },
       );
 
+      const payload = {
+        name: user.name,
+        email: user.email,
+        image: user.image,
+      };
+
+      if (role === 'restaurant') payload.meals = [];
+      else payload.cart = [];
+
       return res
         .status(201)
         .cookie('token', token, { httpOnly: true })
-        .json({
-          name: user.name,
-          email: user.email,
-          image: user.image,
-        });
+        .json(payload);
     } catch (e) {
       return res.status(500).json(e);
     }
@@ -113,7 +118,7 @@ async function login(req, res) {
         image: user.image,
       };
       if (role === 'restaurant') payload.meals = user.meals;
-      else payload.cart = user.cart;
+      else payload.cart = user.cart || [];
       return res
         .status(200)
         .cookie('token', token, { httpOnly: true })

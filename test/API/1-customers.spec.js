@@ -147,7 +147,7 @@ describe('Customer API', () => {
           expect(res.body).to.have.property('name', 'Malik');
           expect(res.body).to.have.property('email', 'almalikmahmud@gmail.com');
           expect(res.body).to.have.property('image');
-          expect(res.body).to.have.property('cart', null);
+          expect(res.body.cart).to.not.be.null;
           done();
         });
     });
