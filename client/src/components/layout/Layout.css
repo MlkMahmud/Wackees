@@ -156,7 +156,7 @@ body {
   box-shadow: -7px 4px 9px 1px rgba(0,0,0,0.5);
 }
 
-.cart_heading {
+.cart_header {
   display: flex;
   height: 60px;
   align-items: center;
@@ -164,8 +164,10 @@ body {
 }
 
 .close_cart_btn {
-  font-size: 24px;
+  font-size: 1.5rem;
   cursor: pointer;
+  border: none;
+  background: none;
 }
 
 .cart .fa-times > path {
@@ -216,8 +218,10 @@ body {
   text-align: center;
 }
 
-.item_delete_btn {
-  font-size: 18px;
+.item_del_btn {
+  font-size: 1.15rem;
+  border: none;
+  background: none;
 }
 
 .proceed_to_checkout {

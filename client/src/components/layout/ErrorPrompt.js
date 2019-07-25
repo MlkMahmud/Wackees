@@ -2,7 +2,6 @@ import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import '../Layout.css';
 
 const ErrorPrompt = ({ error }) => {
   if (error) {

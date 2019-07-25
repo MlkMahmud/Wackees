@@ -1,0 +1,15 @@
+export const getCartTotal = (cart) => {
+  let total = 0;
+  if (cart.length < 1) total = 0;
+  else {
+    for (let i = 0, len = cart.length; i < len; i += 1) {
+      total += cart[i].price;
+    }
+  }
+  return total.toLocaleString('en-NG', {
+    style: 'currency',
+    currency: 'NGN',
+  });
+};
+
+export const RemoveFromCart = null;

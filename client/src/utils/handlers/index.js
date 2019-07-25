@@ -21,3 +21,14 @@ export const changeHeaderBG = () => {
     }
   };
 };
+
+export const openShoppingCart = () => {
+  document.querySelector('.cart').style.display = 'block';
+};
+
+export const closeShoppingCart = (e) => {
+  const { tagName } = e.target;
+  if (tagName === 'BUTTON' || tagName === 'svg' || tagName === 'path') {
+    document.querySelector('.cart').style.display = 'none';
+  }
+};
