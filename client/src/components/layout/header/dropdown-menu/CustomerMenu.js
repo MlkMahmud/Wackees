@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import OpenCartBtn from '../OpenCartBtn';
+import LogoutBtn from '../LogoutBtn';
 
 const CustomerMenu = () => (
   <nav className="hamburgermenu_nav">
@@ -20,9 +21,11 @@ const CustomerMenu = () => (
       />
     </div>
     <div className="hamburgermenu_nav_link_container">
-      <button type="button" className="hamburgermenu_nav_link">
+      <LogoutBtn
+        btnType="hamburgermenu_nav_link"
+      >
         Logout
-      </button>
+      </LogoutBtn>
     </div>
   </nav>
 );

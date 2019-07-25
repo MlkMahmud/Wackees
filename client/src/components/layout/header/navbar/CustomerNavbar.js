@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import OpenCartBtn from '../OpenCartBtn';
+import LogoutBtn from '../LogoutBtn';
 
 const CustomerNavbar = () => (
   <>
@@ -12,10 +13,12 @@ const CustomerNavbar = () => (
     <OpenCartBtn
       btnClass="nav_link"
     />
-    <button type="button" className="nav_link end">
+    <LogoutBtn
+      btnType="nav_link end"
+    >
       <FontAwesomeIcon className="nav_link_icon" icon="sign-out-alt" />
       LOGOUT
-    </button>
+    </LogoutBtn>
   </>
 );
 
