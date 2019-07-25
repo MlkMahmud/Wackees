@@ -7,9 +7,10 @@ import DropdownMenu from './dropdown-menu';
 import HamburgerIcon from './HamburgerIcon';
 import ErrorPrompt from '../ErrorPrompt';
 import ShoppingCart from '../shopping-cart';
+import CheckOutForm from '../checkout-form';
+import ModalBG from '../ModalBG';
 import { changeHeaderBG } from '../../../utils/handlers';
 import '../Layout.css';
-
 
 const Header = ({ user }) => {
   useEffect(() => changeHeaderBG(), []);
@@ -19,8 +20,14 @@ const Header = ({ user }) => {
       <Navbar />
       <HamburgerIcon />
       <DropdownMenu />
+      <ModalBG />
       <ErrorPrompt />
-      {user.role === 'Customer' ? (<ShoppingCart />) : null}
+      {user.role === 'Customer' && (
+        <>
+          <ShoppingCart />
+          <CheckOutForm />
+        </>
+      )}
     </header>
   );
 };
@@ -32,6 +39,5 @@ Header.propTypes = {
 const mapStateToProps = ({ currentUser }) => ({
   user: currentUser,
 });
-
 
 export default connect(mapStateToProps)(Header);

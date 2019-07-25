@@ -12,10 +12,10 @@ const deleteItemFromCart = id => (dispatch) => {
         cart,
       });
     })
-    .catch((err) => {
+    .catch(({ message }) => {
       dispatch({
-        type: 'SERVER ERROR',
-        message: err.message,
+        type: 'ERROR',
+        message,
       });
       setTimeout(() => dispatch({
         type: 'CLEAR ERROR',

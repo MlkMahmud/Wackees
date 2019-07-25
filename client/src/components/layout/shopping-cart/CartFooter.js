@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { getCartTotal } from '../../../utils/helpers';
+import { openCheckOutForm } from '../../../utils/handlers';
 
 const CartFooter = ({ cartTotal, totalItems }) => (
   <div className="proceed_to_checkout">
@@ -17,7 +18,11 @@ const CartFooter = ({ cartTotal, totalItems }) => (
         <b>{cartTotal}</b>
       </span>
     </div>
-    <button type="button" className="proceed_to_checkout_btn">
+    <button
+      type="button"
+      className="proceed_to_checkout_btn"
+      onClick={openCheckOutForm}
+    >
       CHECKOUT
     </button>
   </div>

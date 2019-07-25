@@ -126,8 +126,9 @@ body {
 
 .hamburgermenu_nav_link {
   font-weight: bolder;
-  font-size: 24px;
+  font-size: 1.5rem;
   background: none;
+  text-transform: uppercase;
   border: none;
   font-family: 'Roboto Slab', serif;
 }
@@ -322,8 +323,10 @@ body {
 .close_checkout_form_btn {
   display: block;
   text-align: right;
-  font-size: 20px;
+  font-size: 1.35rem;
   cursor: pointer;
+  background: none;
+  border: none;
 }
 
 .checkout_form h4 {
@@ -367,9 +370,9 @@ body {
   margin-bottom: 15px;
 }
 
-.card-number .fa-credit-card {
+.card_number .fa-credit-card {
   position: absolute;
-  top: 0;
+  top: 10px;
   right: 10px;
   line-height: 39px;
   font-size: 18px;
@@ -389,7 +392,8 @@ body {
 }
 
 .mm, .yy {
-  max-width: 50%;
+  max-width: 45%;
+  margin-right: 5%;
   margin-bottom: 10px;
 }
 
@@ -416,9 +420,12 @@ body {
   border-radius: 4px;
   font-size: 18px;
   border: none;
-  color: white;
   cursor: pointer;
   font-weight: bolder;
+}
+
+.confirm_payment .fa-arrow-right > path {
+  color: #fff;
 }
 
 .expiration_date, .cvv {

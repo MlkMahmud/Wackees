@@ -32,3 +32,14 @@ export const closeShoppingCart = (e) => {
     document.querySelector('.cart').style.display = 'none';
   }
 };
+
+export const closeCheckOutForm = () => {
+  document.querySelector('.modal_bg').style.display = 'none';
+  document.querySelector('.checkout_form').style.display = 'none';
+};
+
+export const openCheckOutForm = () => {
+  document.querySelector('.modal_bg').style.display = 'block';
+  document.querySelector('.checkout_form').style.display = 'block';
+  document.querySelector('.cart').style.display = 'none';
+};

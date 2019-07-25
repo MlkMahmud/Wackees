@@ -34,6 +34,7 @@
         "optionalDependencies": false,
         "peerDependencies": false
       }
-    ]
+    ],
+    "jsx-a11y/label-has-for": 0
   }
 }

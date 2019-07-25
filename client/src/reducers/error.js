@@ -1,6 +1,6 @@
 const error = (state = null, { type, message }) => {
   switch (type) {
-    case 'SERVER ERROR':
+    case 'ERROR':
       return {
         type,
         message,

@@ -10,10 +10,10 @@ const fetchRestaurants = () => (dispatch) => {
         payload: restaurants,
       });
     })
-    .catch((e) => {
+    .catch(({ message }) => {
       dispatch({
-        type: 'SERVER ERROR',
-        message: e.message,
+        type: 'ERROR',
+        message,
       });
       setTimeout(() => dispatch({
         type: 'CLEAR ERROR',
