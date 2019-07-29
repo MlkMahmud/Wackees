@@ -1,17 +1,9 @@
-const currentUser = (state = {
-  role: 'Customer',
-  cart: [],
-}, { type, payload }) => {
+const currentUser = (state = {}, { type, payload, role }) => {
   switch (type) {
-    case 'CUSTOMER LOGIN':
+    case 'LOGIN':
       return {
         ...payload,
-        role: 'Customer',
-      };
-    case 'RESTAURANT LOGIN':
-      return {
-        ...payload,
-        role: 'Restaurant',
+        role,
       };
     case 'LOGOUT':
       return {};
