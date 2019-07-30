@@ -1,18 +1,19 @@
 import history from '../utils/history';
 
-const signIn = (e, isCustomer) => (dispatch) => {
+const signUp = (e, isCustomer) => (dispatch) => {
   e.preventDefault();
-  const { login } = document.forms;
-  const { value: email } = login.email;
-  const { value: password } = login.password;
-  const url = isCustomer ? '/api/v1/auth/login/customer' : '/api/v1/auth/login/restaurant';
+  const { register } = document.forms;
+  const { value: name } = register.name;
+  const { value: email } = register.email;
+  const { value: password } = register.password;
+  const url = isCustomer ? '/api/v1/auth/register/customer' : '/api/v1/auth/register/restaurant';
   const role = isCustomer ? 'Customer' : 'Restaurant';
   const route = isCustomer ? '/' : '/dashboard';
 
   fetch(url, {
     method: 'POST',
     headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-    body: `email=${email}&password=${password}`,
+    body: `name=${name}&email=${email}&password=${password}`,
   })
     .then(res => res.json())
     .then((payload) => {
@@ -35,8 +36,10 @@ const signIn = (e, isCustomer) => (dispatch) => {
       }), 3000);
     });
 
-  login.email.value = '';
-  login.password.value = '';
+  register.name.value = '';
+  register.email.value = '';
+  register.password.value = '';
 };
 
-export default signIn;
+
+export default signUp;

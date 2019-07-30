@@ -1,4 +1,6 @@
-const currentUser = (state = {}, { type, payload, role }) => {
+const user = JSON.parse(sessionStorage.getItem('user')) || {};
+
+const currentUser = (state = user, { type, payload, role }) => {
   switch (type) {
     case 'LOGIN':
       return {

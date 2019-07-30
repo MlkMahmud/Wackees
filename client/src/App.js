@@ -6,6 +6,7 @@ import Home from './components/home';
 import './utils/fontawesome';
 
 const Login = React.lazy(() => import('./components/authentication/login'));
+const Register = React.lazy(() => import('./components/authentication/register'));
 
 const App = () => (
   <Router>
@@ -13,6 +14,7 @@ const App = () => (
     <Route path="/" exact component={Home} />
     <React.Suspense fallback={null}>
       <Route path="/login" component={Login} />
+      <Route path="/register" component={Register} />
     </React.Suspense>
     <Footer />
   </Router>
