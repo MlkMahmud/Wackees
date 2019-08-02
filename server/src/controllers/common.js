@@ -20,6 +20,22 @@ async function fetchAllRestaurants(req, res) {
   }
 }
 
+function filterRestaurants(req, res) {
+  const { q } = req.query || '_';
+
+  Restaurant.findAll({
+    attributes: ['name', 'id', 'email', 'image'],
+    order: [['name']],
+    where: {
+      name: {
+        [Op.iLike]: `%${q}%`,
+      },
+    },
+  })
+    .then(restaurants => res.status(200).json(restaurants))
+    .catch(({ message }) => res.status(500).json({ message }));
+}
+
 function getRestaurantMenu(req, res) {
   const { id } = req.params;
   Restaurant.findByPk(id, {
@@ -136,6 +152,7 @@ function logOut(req, res) {
 
 export default {
   fetchAllRestaurants,
+  filterRestaurants,
   getRestaurantMenu,
   createNewUser,
   login,

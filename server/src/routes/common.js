@@ -5,6 +5,7 @@ const router = express.Router();
 
 const {
   fetchAllRestaurants,
+  filterRestaurants,
   createNewUser,
   login,
   logOut,
@@ -12,6 +13,8 @@ const {
 } = controllers;
 
 router.route('/api/v1/restaurants').get(fetchAllRestaurants);
+
+router.route('/api/v1/search').get(filterRestaurants);
 
 router.route('/api/v1/restaurants/:id').get(getRestaurantMenu);
 
