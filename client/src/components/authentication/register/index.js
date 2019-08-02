@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
@@ -8,8 +8,8 @@ import ToggleUserBtn from '../ToggleUserBtn';
 import signUp from '../../../actions/signUp';
 import '../authentication.css';
 
-const Register = ({ isCustomer, register }) => (
-  <form onSubmit={e => register(e, isCustomer)} name="register" className="sign_up_form">
+const Register = ({ isCustomer, register, history }) => (
+  <form onSubmit={e => register(e, history)} name="register" className="sign_up_form">
     <Header />
     <div className="email_input_container">
       <label htmlFor="email">Email:</label>
@@ -37,6 +37,9 @@ const Register = ({ isCustomer, register }) => (
 Register.propTypes = {
   isCustomer: PropTypes.bool.isRequired,
   register: PropTypes.func.isRequired,
+  history: PropTypes.shape({
+    push: PropTypes.func.isRequired,
+  }).isRequired,
 };
 
 const mapStateToProps = ({ isCustomer }) => ({
@@ -47,4 +50,4 @@ const mapDispatchToProps = {
   register: signUp,
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Register);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Register));

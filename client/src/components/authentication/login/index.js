@@ -1,13 +1,14 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import ToggleUserBtn from '../ToggleUserBtn';
 import signIn from '../../../actions/signIn';
 import '../authentication.css';
 
-const Login = ({ isCustomer, login }) => (
-  <form onSubmit={e => login(e, isCustomer)} name="login" className="login_form">
+const Login = ({ isCustomer, login, history }) => (
+  <form onSubmit={e => login(e, history)} name="login" className="login_form">
     <h2 className="login_form_welcome_message">Welcome Back</h2>
     <div className="user_icon_container">
       <FontAwesomeIcon icon="user-alt" className="user_icon" />
@@ -39,6 +40,9 @@ const Login = ({ isCustomer, login }) => (
 Login.propTypes = {
   isCustomer: PropTypes.bool.isRequired,
   login: PropTypes.func.isRequired,
+  history: PropTypes.shape({
+    push: PropTypes.func.isRequired,
+  }).isRequired,
 };
 
 const mapStateToProps = ({ isCustomer }) => ({
@@ -49,4 +53,4 @@ const mapDispatchToProps = {
   login: signIn,
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Login);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Login));

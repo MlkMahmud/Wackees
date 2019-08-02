@@ -1,11 +1,12 @@
-import history from '../utils/history';
+import store from '../store';
 
-const signUp = (e, isCustomer) => (dispatch) => {
+const signUp = (e, history) => (dispatch) => {
   e.preventDefault();
   const { register } = document.forms;
   const { value: name } = register.name;
   const { value: email } = register.email;
   const { value: password } = register.password;
+  const { isCustomer } = store.getState();
   const url = isCustomer ? '/api/v1/auth/register/customer' : '/api/v1/auth/register/restaurant';
   const role = isCustomer ? 'Customer' : 'Restaurant';
   const route = isCustomer ? '/' : '/dashboard';
