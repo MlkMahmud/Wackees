@@ -16,8 +16,8 @@ async function addToCart(req, res) {
   const { id, item } = req.params;
 
   try {
-    const restaurant = await Restaurant.findByPk(id);
-    const selectedItem = restaurant.menu.find(menuItem => menuItem.id === item);
+    const restaurant = await Restaurant.findByPk(+id);
+    const selectedItem = restaurant.menu.find(menuItem => menuItem.id === +item);
     if (!selectedItem) res.status(404).json({ message: 'Selected Item does not exist or is currently not available' });
     else {
       const customer = await Customer.findByPk(req.userId);
@@ -36,12 +36,12 @@ async function removeFromCart(req, res) {
   const { id } = req.params;
   try {
     const customer = await Customer.findByPk(req.userId);
-    const itemToRemove = customer.cart.findIndex(item => item.id === id);
+    const itemToRemove = customer.cart.findIndex(item => item.id === +id);
     if (itemToRemove === -1) return res.redirect('/api/v1/cart');
     const { cart } = customer;
     cart.splice(itemToRemove, 1);
     customer.cart = cart;
-    customer.save();
+    await customer.save();
     return res.redirect('/api/v1/cart');
   } catch (e) {
     return res.status(500).json({ message: 'Internal Server Error' });

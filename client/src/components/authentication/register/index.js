@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import Header from './Header';
 import ToggleUserBtn from '../ToggleUserBtn';
-import signUp from '../../../actions/signUp';
+import signUp from '../../../dispatchers/signUp';
 import '../authentication.css';
 
 const Register = ({ isCustomer, register, history }) => (

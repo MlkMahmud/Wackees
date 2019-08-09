@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import ToggleUserBtn from '../ToggleUserBtn';
-import signIn from '../../../actions/signIn';
+import signIn from '../../../dispatchers/signIn';
 import '../authentication.css';
 
 const Login = ({ isCustomer, login, history }) => (

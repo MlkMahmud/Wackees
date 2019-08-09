@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import Header from './CheckoutFormHeader';
 import Body from './CheckoutFormBody';
 import Footer from './CheckoutFormFooter';
-import cartCheckout from '../../../actions/cartCheckout';
+import cartCheckout from '../../../dispatchers/cartCheckout';
 
 const CheckOutForm = ({ cart, checkout }) => (
   <form

@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import findRestaurant from '../../actions/findRestaurants';
+import findRestaurant from '../../dispatchers/findRestaurants';
 
 const SearchBar = ({ search, history }) => (
   <form onSubmit={e => search(history, e)} name="search" className="hero_search_bar">

@@ -2,7 +2,7 @@ import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import deleteFromCart from '../../../actions/deleteItemFromCart';
+import deleteFromCart from '../../../dispatchers/deleteItemFromCart';
 
 const CartItem = ({ item, deleteItem }) => (
   <div className="cart_item_container">

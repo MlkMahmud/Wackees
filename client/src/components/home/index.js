@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import fetchRestaurants from '../../actions/fetchTopRestaurants';
+import fetchRestaurants from '../../dispatchers/fetchRestaurants';
 import Hero from './Hero';
 import HottestRestaurants from './HottestRestaurants';
 import OrderBtn from './OrderBtn';

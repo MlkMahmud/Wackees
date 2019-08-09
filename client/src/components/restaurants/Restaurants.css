@@ -41,6 +41,14 @@
   width: 30px;
 }
 
+.display_all_btn {
+  font: normal normal 700 normal 16px / normal "Roboto Slab";
+  background: none;
+  border: none;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
 .restaurants_container {
   display: grid;
   margin: 40px 0;
@@ -49,3 +57,4 @@
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   grid-gap: 20px;
 }
+

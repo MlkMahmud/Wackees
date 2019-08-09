@@ -3,11 +3,6 @@ import db from '../config/db';
 import { Order } from './Customer';
 
 export const Restaurant = db.define('restaurant', {
-  id: {
-    type: sequelize.UUID,
-    primaryKey: true,
-    defaultValue: sequelize.UUIDV1,
-  },
   name: {
     type: sequelize.STRING,
     unique: true,
@@ -44,11 +39,6 @@ export const Restaurant = db.define('restaurant', {
 
 
 export const Meal = db.define('meal', {
-  id: {
-    type: sequelize.UUID,
-    primaryKey: true,
-    defaultValue: sequelize.UUIDV1,
-  },
   name: {
     type: sequelize.STRING,
     allowNull: false,

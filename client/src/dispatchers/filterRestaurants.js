@@ -1,4 +1,4 @@
-const filterRestaurants = () => (dispatch) => { 
+const filterRestaurants = () => (dispatch) => {
   const { search } = document.forms;
   const { value: q } = search.q;
 

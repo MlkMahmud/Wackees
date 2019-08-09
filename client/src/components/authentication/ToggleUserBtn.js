@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import toggleUser from '../../actions/toggleUser';
+import toggleUser from '../../dispatchers/toggleUser';
 
 const ToggleUserBtn = ({ toggle, children }) => (
   <button

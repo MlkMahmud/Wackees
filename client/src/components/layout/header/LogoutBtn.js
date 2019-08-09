@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import signOut from '../../../actions/logout';
+import signOut from '../../../dispatchers/logout';
 
 const LogoutBtn = ({ children, btnType, logout }) => (
   <button

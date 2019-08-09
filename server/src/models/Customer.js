@@ -2,12 +2,6 @@ import sequelize from 'sequelize';
 import db from '../config/db';
 
 export const Customer = db.define('customer', {
-  id: {
-    type: sequelize.UUID,
-    primaryKey: true,
-    defaultValue: sequelize.UUIDV1,
-  },
-
   image: {
     type: sequelize.STRING,
     defaultValue: 'http://bit.ly/2FvrQjm',
@@ -42,11 +36,6 @@ export const Customer = db.define('customer', {
 });
 
 export const Order = db.define('order', {
-  id: {
-    type: sequelize.UUID,
-    primaryKey: true,
-    defaultValue: sequelize.UUIDV1,
-  },
   item: {
     type: sequelize.STRING,
     allowNull: false,
