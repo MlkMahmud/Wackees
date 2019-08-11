@@ -39,7 +39,7 @@ function filterRestaurants(req, res) {
 function getRestaurantMenu(req, res) {
   const { id } = req.params;
   Restaurant.findByPk(+id, {
-    attributes: ['name', 'image', 'menu'],
+    attributes: ['id', 'name', 'image', 'menu'],
   })
     .then((restaurant) => {
       restaurant.menu = restaurant.menu || [];

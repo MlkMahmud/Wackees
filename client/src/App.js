@@ -8,6 +8,7 @@ import './utils/fontawesome';
 const Login = React.lazy(() => import('./components/authentication/login'));
 const Register = React.lazy(() => import('./components/authentication/register'));
 const Restaurants = React.lazy(() => import('./components/restaurants'));
+const Menu = React.lazy(() => import('./components/menu'));
 
 const App = () => (
   <Router>
@@ -16,7 +17,8 @@ const App = () => (
     <React.Suspense fallback={null}>
       <Route path="/login" component={Login} />
       <Route path="/register" component={Register} />
-      <Route path="/restaurants" component={Restaurants} />
+      <Route path="/restaurants" exact component={Restaurants} />
+      <Route path="/restaurants/:id" component={Menu} />
     </React.Suspense>
     <Footer />
   </Router>

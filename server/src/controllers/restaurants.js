@@ -13,7 +13,7 @@ function fetchAllMeals(req, res) {
 async function addNewMeal(req, res) {
   const { name, price } = req.body;
   let { available } = req.body;
-  const image = res.locals.image || 'https://bit.ly/2JfoVNR';
+  const image = res.locals.image || 'https://res.cloudinary.com/mlkmahmud/image/upload/v1565380262/resize.jpg';
 
   if (isValidName(name) && isValidPrice(price)) {
     try {

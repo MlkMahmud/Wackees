@@ -37,12 +37,12 @@ async function removeFromCart(req, res) {
   try {
     const customer = await Customer.findByPk(req.userId);
     const itemToRemove = customer.cart.findIndex(item => item.id === +id);
-    if (itemToRemove === -1) return res.redirect('/api/v1/cart');
+    if (itemToRemove === -1) return res.json(customer.cart);
     const { cart } = customer;
     cart.splice(itemToRemove, 1);
     customer.cart = cart;
     await customer.save();
-    return res.redirect('/api/v1/cart');
+    return res.json(cart);
   } catch (e) {
     return res.status(500).json({ message: 'Internal Server Error' });
   }

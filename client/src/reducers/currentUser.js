@@ -9,6 +9,11 @@ const currentUser = (state = user, { type, payload, role }) => {
       };
     case 'LOGOUT':
       return {};
+    case 'UPDATE CART':
+      return {
+        ...state,
+        cart: payload,
+      };
     default:
       return state;
   }

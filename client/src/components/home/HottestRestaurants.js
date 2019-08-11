@@ -27,7 +27,7 @@ const HottestRestaurants = ({ allRestaurants }) => (
 HottestRestaurants.propTypes = {
   allRestaurants: PropTypes.arrayOf(
     PropTypes.shape({
-      id: PropTypes.string,
+      id: PropTypes.number,
       name: PropTypes.string,
       image: PropTypes.string,
     }),

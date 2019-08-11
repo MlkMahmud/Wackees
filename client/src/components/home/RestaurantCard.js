@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 const RestaurantCard = ({ id, image, name }) => (
-  <Link to={`/menu/${id}`}>
+  <Link to={`/restaurants/${id}`}>
     <div className="restaurant">
       <img src={image} alt="" className="restaurant_image" />
       <div className="restaurant_information">
@@ -19,7 +19,7 @@ const RestaurantCard = ({ id, image, name }) => (
 );
 
 RestaurantCard.propTypes = {
-  id: PropTypes.string.isRequired,
+  id: PropTypes.number.isRequired,
   image: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
 };

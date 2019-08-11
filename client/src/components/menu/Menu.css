@@ -1,0 +1,354 @@
+.dashboard {
+  margin-top: 40px;
+  display: grid;
+  width: 100%;
+  grid-template-rows: auto;
+  grid-template-columns: minmax(300px, 20%) 1fr;
+  min-height: 100vh;
+}
+
+.dashboard_user_profile {
+  min-height: 100vh;
+  position: -webkit-sticky;
+  top: 40px;
+  left: 0;
+  padding: 20px;
+  text-align: center;
+  background: #fff;
+}
+
+.dashboard_user_profile hr {
+  height: 5px;
+  background-color: #000;
+  border: none;
+  width: 20%;
+}
+
+.dashboard_user_profile_pic_container {
+  position: relative;
+  margin: 40px auto 10px auto;
+  width: 250px;
+  height: 250px;
+  border-radius: 10%;
+  overflow: hidden;
+}
+
+.dashboard_user_profile_pic {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.profile_pic_form{
+  position: absolute;
+  background: black;
+  line-height: 250px;
+  opacity: 0;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  transition: all linear .5s;
+}
+
+.profile_pic_form input {
+  visibility: hidden;
+}
+
+.profile_pic_form:hover {
+  cursor: pointer;
+  opacity: 0.5;
+}
+
+.profile_pic_form:hover .fa-plus > path,
+.profile_pic_form:hover .fa-spinner > path {
+  color: #FFF;
+}
+
+.profile_pic_form .fa-plus,
+.profile_pic_form .fa-spinner {
+  align-self: center;
+  font-size: 2rem;
+}
+
+.dashboard_user_name {
+  font-size: 32px;
+  margin-bottom: 5px;
+}
+
+.dashboard_user_nav_link {
+  display: block;
+  padding: 20px;
+  font: normal normal 700 normal 24px / normal "Roboto Slab";
+  border: none;
+  background: none;
+  width: 100%;
+}
+
+.dashboard_main {
+  height: auto;
+  width: 100%;
+  margin-top: 40px;
+}
+
+.dashboard_main h2 {
+  text-align: left;
+  width: 95%;
+  margin: 20px auto 0 auto;
+}
+
+.dashboard_main_items {
+  width: 95%;
+  min-width: 300px;
+  display: grid;
+  grid-gap: 20px;
+  margin: 20px auto;
+  grid-template-rows: auto;
+  grid-auto-rows: auto;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+}
+
+.add_meal, .meal_card {
+  height: 350px;
+  margin-bottom: 15px;
+}
+
+.meal_card_image_container {
+  width: 100%;
+  height: 70%;
+  overflow: hidden;
+}
+
+.meal_card_image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.meal_card_description {
+  border: 1px solid #e5e5e5;
+  width: 100%;
+  display: inline-block;
+  height: auto;
+  padding: 10px;
+}
+
+.meal_card_name {
+  font-weight: bolder;
+  display: block;
+}
+
+.meal_card_price {
+  display: block;
+}
+
+.edit_delete_btn_container {
+  width: 100%;
+  min-width: 280px;
+  display: flex;
+  justify-content: flex-start;
+}
+
+.meal_card_edit_btn,
+.meal_card_delete_btn {
+  background: #d53032;
+  border: none;
+  color: white;
+  font-weight: bolder;
+  padding: 10px;
+  cursor: pointer;
+  margin-right: 10px;
+}
+
+.meal_card_edit_btn:hover,
+.meal_card_delete_btnL:hover {
+  scale: (1.05);
+}
+
+.add_meal_icon_container {
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  vertical-align: middle;
+  border: 2px solid #e5e5e5;
+  line-height: 350px;
+}
+
+.add_meal_icon {
+  font-size: 36px;
+  cursor: pointer;
+}
+
+.add_meal_icon:hover {
+  scale: (1.2);
+}
+
+.dashboard_main_search_container {
+  width: 100%;
+  min-width: 300px;
+  margin: 5px 0;
+  height: 40px;
+  padding: 0;
+}
+
+.dashboard_main_search {
+  width: 95%;
+  margin: 0 auto;
+  position: relative;
+}
+
+.dashboard_main_search input {
+  padding: 10px 0 10px 35px;
+  box-sizing: border-box;
+  width: 100%;
+  font-size: 16px;
+  border: none;
+  background: #e5e5e5;
+}
+
+.dashboard_main_search button {
+  position: absolute;
+  top: 0;
+  left: 0px;
+  line-height: 40px;
+  background: none;
+  border: none;
+  text-align: center;
+  width: 30px;
+}
+
+.modal_bg {
+  position: fixed;
+  display: none;
+  top: 0;
+  left: 0;
+  height: 100%;
+  z-index: 10000;
+  width: 100%;
+  background: black;
+  opacity: 0.9;
+}
+
+.modal h4 {
+  text-align: center;
+}
+
+.modal {
+  min-width: 300px;
+  z-index: 20000;
+  display: none;
+  width: 50%;
+  border-radius: 10px;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  height: auto;
+  padding: 20px;
+  background: white;
+}
+
+.modal label {
+  display: block;
+}
+
+.modal input[type=text],
+.modal input[type=number] {
+  width: 100%;
+  padding: 10px;
+  border-radius: 2px;
+  border: 1px solid black;
+  outline: none;
+  margin-bottom: 15px;
+}
+
+.modal span {
+  display: block;
+  padding: 10px 0;
+}
+
+.modal button {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  border: none;
+  cursor: pointer;
+  border-radius: 2px;
+  background: #d53032;
+  color: white;
+}
+
+.close_form_btn {
+  text-align: right;
+  margin-bottom: 20px;
+}
+
+.close_form_btn:hover {
+  cursor: pointer;
+  scale: (1.05);
+
+}
+
+.fa-spinner > path {
+  color: #FFF;
+}
+
+.order {
+  width: 100%;
+  min-width: 300px;
+}
+
+.order_item {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  margin: 20px 0;
+}
+
+.order_price {
+  display: flex;
+  justify-content: space-between;
+}
+
+@media (max-width: 650px) {
+  .dashboard {
+    grid-template-columns: 100%;
+    grid-auto-rows: auto;
+  }
+
+  .dashboard_user_profile {
+    border-right: none;
+    border-bottom: 2px solid black;
+    height: auto;
+    z-index: 100;
+    padding: 0px;
+    min-height: auto;
+  }
+
+  .dashboard_user_profile_pic_container {
+    margin: 40px auto;
+    height: 150px;
+    width: 150px;
+  }
+
+  .dashboard_user_nav {
+    display: flex;
+    width: 100%;
+    max-width: 300px;
+    margin: 20px auto;
+    justify-content: space-between;
+  }
+
+  .dashboard_user_nav_link {
+    padding: 10px 0;
+    display: block;
+    font: normal normal 700 normal 24px / normal "Roboto Slab";
+    border: none;
+    background: none;
+    width: 100%;
+  }
+
+  .profile_pic_form {
+    line-height: 150px;
+  }
+}

@@ -54,6 +54,7 @@ export const Meal = db.define('meal', {
   },
   image: {
     type: sequelize.STRING,
+    defaultValue: 'https://res.cloudinary.com/mlkmahmud/image/upload/v1565380262/resize.jpg',
   },
 });
 

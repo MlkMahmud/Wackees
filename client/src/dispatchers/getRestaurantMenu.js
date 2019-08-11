@@ -1,16 +1,12 @@
-const deleteItemFromCart = id => (dispatch) => {
-  fetch(`/api/v1/cart/${id}`, {
-    method: 'DELETE',
-  })
+const getRestaurantMenu = id => (dispatch) => {
+  fetch(`/api/v1/restaurants/${id}`)
     .then(response => response.json())
     .then((payload) => {
       if ('message' in payload) throw Error(payload.message);
       dispatch({
-        type: 'UPDATE CART',
+        type: 'GET MENU',
         payload,
       });
-      const user = JSON.parse(sessionStorage.getItem('user'));
-      sessionStorage.setItem('user', JSON.stringify({ ...user, cart: payload }));
     })
     .catch(({ message }) => {
       dispatch({
@@ -23,4 +19,4 @@ const deleteItemFromCart = id => (dispatch) => {
     });
 };
 
-export default deleteItemFromCart;
+export default getRestaurantMenu;

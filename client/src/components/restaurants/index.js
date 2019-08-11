@@ -22,14 +22,14 @@ const Restaurants = ({ restaurants, search, fetchAllRestaurants }) => (
     <p>
       {restaurants.length}
       {' '}
-      matche(s) found
+      match(es) found
       {' '}
       <button
         className="display_all_btn"
         type="button"
         onClick={fetchAllRestaurants}
       >
-        Display All
+        display all
       </button>
     </p>
     <div className="restaurants_container">

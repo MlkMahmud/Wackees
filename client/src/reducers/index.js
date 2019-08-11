@@ -3,10 +3,12 @@ import currentUser from './currentUser';
 import isCustomer from './isCustomer';
 import restaurants from './restaurants';
 import error from './error';
+import restaurant from './restaurant';
 
 export default combineReducers({
   currentUser,
   restaurants,
   error,
   isCustomer,
+  restaurant,
 });
