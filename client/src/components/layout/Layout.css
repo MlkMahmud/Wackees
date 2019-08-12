@@ -146,8 +146,9 @@ body {
   width: 50%;
   max-width: 450px;
   display: none;
-  height: auto;
+  max-height: 90vh;
   position: absolute;
+  overflow-y: scroll;
   top: 0;
   padding: 20px;
   right: 0;
