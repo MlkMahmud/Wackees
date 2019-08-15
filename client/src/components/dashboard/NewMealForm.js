@@ -22,7 +22,7 @@ const NewMealForm = ({ loading, addMeal }) => (
     <label hmtlfor="price">Price:</label>
     <input name="price" type="number" required="required" />
     <label hmtlfor="image">Image:</label>
-    <input name="image" type="file" required="required" />
+    <input name="image" type="file" />
     <label hmtlfor="available">Available:</label>
     <span>
       True

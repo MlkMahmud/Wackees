@@ -32,7 +32,7 @@ const EditMealForm = ({ loading, item, handleSubmit }) => (
       required="required"
     />
     <label htmlFor="image">Image:</label>
-    <input name="image" type="file" required="required" />
+    <input name="image" type="file" />
     <label htmlFor="available">Available:</label>
     {item.available ? (
       <>

@@ -19,6 +19,11 @@ const currentUser = (state = user, { type, payload, role }) => {
         ...state,
         meals: payload,
       };
+    case 'UPDATE PROFILE':
+      return {
+        ...state,
+        image: payload,
+      };
     default:
       return state;
   }
