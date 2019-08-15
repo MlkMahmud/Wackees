@@ -1,8 +1,9 @@
-const logout = () => (dispatch) => {
+const logout = history => (dispatch) => {
   fetch('/api/v1/auth/logout')
     .then((res) => {
       if (res.ok) {
         sessionStorage.clear();
+        history.push('/login');
         dispatch({
           type: 'LOGOUT',
         });

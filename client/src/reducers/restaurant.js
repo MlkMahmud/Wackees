@@ -1,7 +1,7 @@
 const defaultState = {
   name: '',
   image: '',
-  menu: [],
+  meals: [],
 };
 
 const restaurant = (state = defaultState, { type, payload }) => {
