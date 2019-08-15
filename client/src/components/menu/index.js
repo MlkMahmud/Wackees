@@ -51,10 +51,10 @@ const Menu = ({
           </form>
         </div>
         <div onClick={addItem} className="dashboard_main_items">
-          {restaurant.menu.map(({
-            id, name, image, price,
-          }) => (
-            <MealCard key={id} id={id} name={name} image={image} price={price} />
+          {restaurant.menu.map(item => (
+            <MealCard key={item.id} item={item}>
+              <button data-id={item.id} type="button" className="meal_card_edit_btn">Add to cart</button>
+            </MealCard>
           ))}
         </div>
       </section>

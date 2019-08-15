@@ -1,5 +1,5 @@
 import { Customer, Order } from '../models/Customer';
-import { Restaurant } from '../models/Restaurant';
+import { Restaurant, Meal } from '../models/Restaurant';
 
 
 async function getCart(req, res) {
@@ -16,8 +16,9 @@ async function addToCart(req, res) {
   const { id, item } = req.params;
 
   try {
-    const restaurant = await Restaurant.findByPk(+id);
-    const selectedItem = restaurant.menu.find(menuItem => menuItem.id === +item);
+    const restaurant = await Restaurant.findByPk(+id, { include: [Meal] });
+    const menu = restaurant.meals.filter(meal => meal.available);
+    const selectedItem = menu.find(menuItem => menuItem.id === +item);
     if (!selectedItem) res.status(404).json({ message: 'Selected Item does not exist or is currently not available' });
     else {
       const customer = await Customer.findByPk(req.userId);

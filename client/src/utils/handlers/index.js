@@ -43,3 +43,14 @@ export const openCheckOutForm = () => {
   document.querySelector('.checkout_form').style.display = 'block';
   document.querySelector('.cart').style.display = 'none';
 };
+
+export const closeMealForms = () => {
+  document.querySelector('.modal_bg').style.display = 'none';
+  document.querySelector('.new_meal_form').style.display = 'none';
+  document.querySelector('.edit_meal_form').style.display = 'none';
+};
+
+export const openNewMealForm = () => {
+  document.querySelector('.modal_bg').style.display = 'block';
+  document.querySelector('.new_meal_form').style.display = 'block';
+};

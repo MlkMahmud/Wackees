@@ -205,23 +205,18 @@ describe('Customer API', () => {
   });
   describe('Add To Cart', () => {
     let id;
-    let mealId;
-    // Fetch restaurant and meal id
     before((done) => {
-      Restaurant.findOne({
-        where: { name: 'Chicken Republic' },
-      })
-        .then((restaurant) => {
-          const { id: restaurantId } = restaurant;
-          id = restaurantId;
-          mealId = restaurant.menu[0].id;
+      chai.request(app)
+        .get('/api/v1/restaurants/1')
+        .end((err, res) => {
+          const { meals } = res.body;
+          id = meals[0].id;
           done();
-        })
-        .catch(() => done());
+        });
     });
     it('Should add an item from a restaurant\'s into a customer\'s cart', (done) => {
       agent
-        .post(`/api/v1/restaurants/${id}/${mealId}`)
+        .post(`/api/v1/restaurants/1/${id}`)
         .end((err, res) => {
           expect(err).to.be.null;
           expect(res).to.redirect;
@@ -272,17 +267,9 @@ describe('Customer API', () => {
   });
   describe('Checkout', () => {
     before((done) => {
-      Restaurant.findOne({
-        where: { name: 'Chicken Republic' },
-      })
-        .then((restaurant) => {
-          const { id } = restaurant;
-          const { id: item } = restaurant.menu[0];
-          agent
-            .post(`/api/v1/restaurants/${id}/${item}`)
-            .end(() => done());
-        })
-        .catch(e => done(e));
+      agent
+        .post('/api/v1/restaurants/1/2')
+        .end(() => done());
     });
     it('Should checkout all items in a customer\'s cart', (done) => {
       agent

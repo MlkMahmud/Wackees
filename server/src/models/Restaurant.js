@@ -8,11 +8,13 @@ export const Restaurant = db.define('restaurant', {
     unique: true,
     allowNull: false,
   },
+
   email: {
     type: sequelize.STRING,
     unique: true,
     allowNull: false,
   },
+
   password: {
     type: sequelize.STRING,
     allowNull: false,
@@ -22,40 +24,30 @@ export const Restaurant = db.define('restaurant', {
     type: sequelize.STRING,
     defaultValue: 'https://bit.ly/2XujZ0x',
   },
-
-  isAdmin: {
-    type: sequelize.BOOLEAN,
-    allowNull: false,
-    defaultValue: true,
-  },
-
-  menu: {
-    type: sequelize.ARRAY(sequelize.JSON),
-    set(val) {
-      this.setDataValue('menu', val);
-    },
-  },
 });
-
 
 export const Meal = db.define('meal', {
   name: {
     type: sequelize.STRING,
     allowNull: false,
   },
+
   price: {
     type: sequelize.NUMERIC,
     allowNull: false,
   },
+
   available: {
     type: sequelize.BOOLEAN,
     allowNull: false,
     defaultValue: true,
   },
+
   image: {
     type: sequelize.STRING,
     defaultValue: 'https://res.cloudinary.com/mlkmahmud/image/upload/v1565380262/resize.jpg',
   },
+
 });
 
 Restaurant.hasMany(Meal);

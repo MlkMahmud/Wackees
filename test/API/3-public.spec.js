@@ -37,7 +37,7 @@ describe('PUBLIC ROUTES', () => {
         .end((err, res) => {
           expect(res).to.have.status(200);
           expect(res.body).to.have.property('name', 'Chicken Republic');
-          res.body.menu.forEach(item => expect(item).to.have.property('available', true));
+          res.body.meals.forEach(item => expect(item).to.have.property('available', true));
           done();
         });
     });

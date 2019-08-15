@@ -10,7 +10,6 @@ const RestaurantNavbar = () => (
       HOME
     </Link>
     <Link className="nav_link" to="/dashboard">
-      <FontAwesomeIcon className="nav_link_icon" icon="" />
       DASHBOARD
     </Link>
     <Link className="nav_link" to="/orders">

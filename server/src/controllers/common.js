@@ -39,11 +39,20 @@ function filterRestaurants(req, res) {
 function getRestaurantMenu(req, res) {
   const { id } = req.params;
   Restaurant.findByPk(+id, {
-    attributes: ['id', 'name', 'image', 'menu'],
+    attributes: ['id', 'name', 'image'],
+    include: [Meal],
   })
-    .then((restaurant) => {
-      restaurant.menu = restaurant.menu || [];
-      res.status(200).json(restaurant);
+    .then(({
+      id, name, image, meals,
+    }) => {
+      const menu = meals.filter(meal => meal.available);
+      const payload = {
+        id,
+        name,
+        image,
+        meals: menu,
+      };
+      res.status(200).json(payload);
     })
     .catch(() => res.status(500).json({ message: 'Internal Server Error' }));
 }

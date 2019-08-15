@@ -328,14 +328,13 @@ describe('Restaurant API', () => {
         .delete(`/api/v1/meals/${mealId}`)
         .end((err, res) => {
           expect(err).to.be.null;
-          expect(res).to.redirect;
           expect(res.body).to.have.lengthOf(1);
           res.body.forEach(meal => expect(meal).to.not.have.property('name', 'Double Chickwizz'));
           done();
         });
     });
   });
-  describe('SET MENU', () => {
+  describe('GET MENU', () => {
     before((done) => {
       agent
         .post('/api/v1/meals')
@@ -349,13 +348,6 @@ describe('Restaurant API', () => {
           done();
         });
     });
-    it('Should add all available meals to the restaurant\'s menu', (done) => {
-      agent
-        .post('/api/v1/menu')
-        .end(() => done());
-    });
-  });
-  describe('GET MENU', () => {
     it('Should return an array of a restaurant\'s available meals', (done) => {
       agent
         .get('/api/v1/menu')

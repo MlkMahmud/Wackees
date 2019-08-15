@@ -14,6 +14,11 @@ const currentUser = (state = user, { type, payload, role }) => {
         ...state,
         cart: payload,
       };
+    case 'UPDATE MEALS':
+      return {
+        ...state,
+        meals: payload,
+      };
     default:
       return state;
   }

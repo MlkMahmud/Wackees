@@ -59,7 +59,7 @@ async function updateMeal(req, res) {
       await Meal.update(payload, {
         where: { id, restaurantId: restaurant.id },
       });
-      res.redirect('/api/v1/meals');
+      res.redirect(303, '/api/v1/meals');
     } catch (e) {
       res.status(500).json({ message: 'Internal server error.' });
     }
@@ -84,31 +84,25 @@ async function deleteMeal(req, res) {
       },
     });
 
-    res.redirect('/api/v1/meals');
+    const updatedRestaurant = await Restaurant.findByPk(req.userId, {
+      include: [Meal],
+    });
+
+    res.json(updatedRestaurant.meals);
   } catch (e) {
     res.status(500).json({ message: 'Internal Server Error' });
   }
 }
 
 function getMenu(req, res) {
-  Restaurant.findByPk(req.userId)
+  Restaurant.findByPk(req.userId, { include: [Meal] })
     .then((restaurant) => {
-      const menu = restaurant.menu ? restaurant.menu : [];
+      const menu = restaurant.meals.filter(meal => meal.available);
       res.status(200).json(menu);
     })
     .catch(() => res.status(500).json({ message: 'Internal Server Error' }));
 }
 
-async function setMenu(req, res) {
-  try {
-    const restaurant = await Restaurant.findByPk(req.userId, { include: [Meal] });
-    restaurant.menu = restaurant.meals.filter(meal => meal.available);
-    await restaurant.save();
-    res.redirect('/api/v1/menu');
-  } catch (e) {
-    res.status(500).json({ message: 'Internal Server Error' });
-  }
-}
 
 function getOrders(req, res) {
   Restaurant.findByPk(req.userId, { include: [Order] })
@@ -134,7 +128,6 @@ export default {
   updateMeal,
   deleteMeal,
   getMenu,
-  setMenu,
   getOrders,
   updateProfilePhoto,
 };

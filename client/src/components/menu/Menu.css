@@ -177,6 +177,8 @@
 .add_meal_icon {
   font-size: 36px;
   cursor: pointer;
+  border: none;
+  background: none;
 }
 
 .add_meal_icon:hover {
@@ -281,6 +283,7 @@
 .close_form_btn {
   text-align: right;
   margin-bottom: 20px;
+  background: none !important;
 }
 
 .close_form_btn:hover {
@@ -332,11 +335,9 @@
   }
 
   .dashboard_user_nav {
-    display: flex;
     width: 100%;
     max-width: 300px;
     margin: 20px auto;
-    justify-content: space-between;
   }
 
   .dashboard_user_nav_link {

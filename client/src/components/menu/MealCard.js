@@ -2,28 +2,31 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { formatPrice } from '../../utils/helpers';
 
-const MealCard = ({
-  id, name, image, price,
-}) => (
+const MealCard = ({ label, item, children }) => (
   <div className="meal_card">
     <div className="meal_card_image_container">
-      <img src={image} alt="" className="meal_card_image" />
+      <img src={item.image} alt="" className="meal_card_image" />
     </div>
     <div className="meal_card_description">
-      <span className="meal_card_name">{name}</span>
-      <span className="meal_card_price">{formatPrice(price)}</span>
+      <span className="meal_card_name">{item.name}</span>
+      <span className="meal_card_price">{formatPrice(item.price)}</span>
+      {label}
       <div className="edit_delete_btn_container">
-        <button data-id={id} type="button" className="meal_card_edit_btn">Add to cart</button>
+        {children}
       </div>
     </div>
   </div>
 );
 
+
+MealCard.defaultProps = {
+  label: '',
+};
+
 MealCard.propTypes = {
-  id: PropTypes.number.isRequired,
-  name: PropTypes.string.isRequired,
-  image: PropTypes.string.isRequired,
-  price: PropTypes.string.isRequired,
+  item: PropTypes.shape().isRequired,
+  label: PropTypes.node,
+  children: PropTypes.node.isRequired,
 };
 
 export default MealCard;

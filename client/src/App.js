@@ -9,6 +9,7 @@ const Login = React.lazy(() => import('./components/authentication/login'));
 const Register = React.lazy(() => import('./components/authentication/register'));
 const Restaurants = React.lazy(() => import('./components/restaurants'));
 const Menu = React.lazy(() => import('./components/menu'));
+const Dashboard = React.lazy(() => import('./components/dashboard'));
 
 const App = () => (
   <Router>
@@ -19,6 +20,7 @@ const App = () => (
       <Route path="/register" component={Register} />
       <Route path="/restaurants" exact component={Restaurants} />
       <Route path="/restaurants/:id" component={Menu} />
+      <Route path="/dashboard" component={Dashboard} />
     </React.Suspense>
     <Footer />
   </Router>
