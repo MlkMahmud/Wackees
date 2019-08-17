@@ -299,6 +299,9 @@
 .order {
   width: 100%;
   min-width: 300px;
+  background-color: #d5d5d5;
+  padding: 0 10px;
+  border-radius: 10px; 
 }
 
 .order_item {

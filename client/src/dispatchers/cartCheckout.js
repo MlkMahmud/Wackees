@@ -14,9 +14,9 @@ const cartCheckout = (e, customerCart) => (dispatch) => {
         if (res.ok) return res.json();
         throw Error('Cart Checkout Failed');
       })
-      .then(cart => dispatch({
+      .then(payload => dispatch({
         type: 'UPDATE CART',
-        cart,
+        payload,
       }))
       .catch(({ message }) => {
         dispatch({
@@ -28,6 +28,8 @@ const cartCheckout = (e, customerCart) => (dispatch) => {
         }), 3000);
       });
   }
+  document.querySelector('.modal_bg').style.display = 'none';
+  document.querySelector('.checkout_form').style.display = 'none';
 };
 
 export default cartCheckout;

@@ -2,7 +2,7 @@ import bcrypt from 'bcryptjs';
 import sequelize from 'sequelize';
 import jwt from 'jsonwebtoken';
 import { Restaurant, Meal } from '../models/Restaurant';
-import { Customer } from '../models/Customer';
+import { Customer, Order } from '../models/Customer';
 import validator from '../utils/validate-input';
 
 const { Op } = sequelize;
@@ -92,8 +92,10 @@ async function createNewUser(req, res) {
         image: user.image,
       };
 
-      if (role === 'restaurant') payload.meals = [];
-      else payload.cart = [];
+      if (role === 'restaurant') {
+        payload.meals = [];
+        payload.orders = [];
+      } else payload.cart = [];
 
       return res
         .status(201)
@@ -125,7 +127,7 @@ async function login(req, res) {
     if (role === 'restaurant') {
       user = await Model.findOne({
         where: { email },
-        include: [Meal],
+        include: [Meal, Order],
       });
     } else {
       user = await Model.findOne({
@@ -142,8 +144,10 @@ async function login(req, res) {
         email: user.email,
         image: user.image,
       };
-      if (role === 'restaurant') payload.meals = user.meals;
-      else payload.cart = user.cart || [];
+      if (role === 'restaurant') {
+        payload.meals = user.meals;
+        payload.orders = user.orders;
+      } else payload.cart = user.cart || [];
       return res
         .status(200)
         .cookie('token', token, { httpOnly: true })

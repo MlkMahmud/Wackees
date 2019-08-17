@@ -9,7 +9,7 @@ const ShoppingCart = ({ cart }) => (
   <div className="cart">
     <CartHeader />
     <hr />
-    {cart.map((item, i) => <CartItem key={item.id + i} item={item} />)}
+    {cart.map((item, i) => <CartItem key={i} item={item} />)}
     <CartFooter />
   </div>
 );
