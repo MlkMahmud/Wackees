@@ -33,8 +33,4 @@ const db = process.env.DATABASE_URL ? new Sequelize(process.env.DATABASE_URL, {
   },
 });
 
-db.sync({
-  force: true,
-});
-
 export default db;
