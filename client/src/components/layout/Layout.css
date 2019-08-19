@@ -1,0 +1,484 @@
+* {
+  text-decoration: none;
+  color: black;
+  box-sizing: border-box;
+  color: black;
+}
+
+html,
+body {
+  padding: 0;
+  margin: 0;
+  width: 100%;
+  font-family: 'Roboto Slab', serif;
+}
+
+/*****************************************************************NAVBAR*****************************************************************/
+
+.header {
+  width: 100%;
+  position: fixed;
+  z-index: 1000;
+  top: 0;
+  left: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 60px;
+  background-color: transparent;
+  padding: 0 2.5%;
+}
+
+
+.logo {
+  font-size: 24px;
+  color: white;
+  background: #000;
+  border-radius: 0 0 10px 10px;
+  padding: 10px;
+  font-family: 'Righteous', cursive;
+  line-height: 60px;
+  align-self: center;
+}
+
+.nav_link {
+  display: inline-block;
+  margin-right: 12px;
+  font-weight: bolder;
+  font-size: 1rem;
+  border: none;
+  background: none;
+  font-family: 'Roboto Slab', serif;
+}
+
+.nav_link:hover {
+  transform: scale(1.1);
+}
+
+.nav_link_icon {
+  margin-right: 2px;
+}
+
+.end {
+  margin-right: 0;
+}
+
+/*************************************************************HAMBURGER MENU*************************************************************/
+
+.hamburger_icon_btn {
+  background: none;
+  border: none;
+}
+
+.hamburger_icon {
+  display: none;
+  font-weight: bolder;
+  font-size: 32px;
+  cursor: pointer;
+}
+
+.hamburgermenu {
+  position: fixed;
+  text-align: center;
+  top: 0;
+  right: 0;
+  background: white;
+  width: 0%;
+  height: 100%;
+  padding: 20px;
+  visibility: hidden;
+  overflow: hidden;
+  z-index: 2000;
+  transition: 0.2s all linear;
+}
+
+.close_menu_btn {
+  text-align: right;
+  font-size: 24px;
+  display: block;
+  width: 100%;
+  background: none;
+  border: none;
+}
+
+.close_menu_btn_icon:hover {
+  transform: scale(1.2);
+  cursor: pointer;
+}
+
+.profile_pic_container {
+  text-align: center;
+  width: 80px;
+  height: 80px;
+  border-radius: 10px;
+  margin: 30px auto;
+  overflow: hidden;
+}
+
+.profile_pic {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.hamburgermenu_nav_link_container {
+  margin: 40px 0;
+}
+
+.hamburgermenu_nav_link {
+  font-weight: bolder;
+  font-size: 1.5rem;
+  background: none;
+  text-transform: uppercase;
+  border: none;
+  font-family: 'Roboto Slab', serif;
+}
+
+/***toggle hamburger menu ***/
+.open {
+  width: 100%;
+  visibility: visible;
+}
+
+/*************************************************CART*****************************************************************/
+
+.cart {
+  width: 50%;
+  max-width: 450px;
+  display: none;
+  max-height: 90vh;
+  position: absolute;
+  overflow-y: scroll;
+  top: 0;
+  padding: 20px;
+  right: 0;
+  z-index: 10000;
+  background: #f7f7f7;
+  -webkit-box-shadow: -7px 4px 9px 1px rgba(0,0,0,0.5); 
+  -moz-box-shadow: -7px 4px 9px 1px rgba(0,0,0,0.5);
+  box-shadow: -7px 4px 9px 1px rgba(0,0,0,0.5);
+}
+
+.cart_header {
+  display: flex;
+  height: 60px;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.close_cart_btn {
+  font-size: 1.5rem;
+  cursor: pointer;
+  border: none;
+  background: none;
+}
+
+.cart .fa-times > path {
+  color: #000;
+}
+
+.cart_item_container {
+  width: 100%;
+  display: flex;
+  justify-content: left;
+  height: auto;
+  margin-bottom: 20px;
+}
+
+.cart_item_image_container {
+  height: 60px;
+  margin-right: 5px;
+  display: inline-block;
+  width: 20%;
+}
+
+.cart_item_container img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}
+
+.cart_item_details{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.cart_item{
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px; 
+}
+
+.cart-item-quantity{
+  display: flex;
+  align-items: center;
+}
+
+.qty{
+  width: 40px;
+  margin-right: 10px;
+  text-align: center;
+}
+
+.item_del_btn {
+  font-size: 1.15rem;
+  border: none;
+  background: none;
+}
+
+.proceed_to_checkout {
+  margin-top: 30px;
+  padding: 20px 0;
+  height:100px;
+  width: 100%;
+  border-top: 2px dashed #000;
+}
+
+.total {
+  display: flex;
+  justify-content: space-between;
+}
+
+.proceed_to_checkout_btn {
+  display: block;
+  padding: 15px;
+  color:white;
+  margin: 20px 0;
+  font-weight: bolder;
+  background: #d53032;
+  border: none;
+  border-radius: 10px;
+  width: 100%;
+}
+
+/*************************************************FOOTER*****************************************************************/
+
+.footer {
+  background: black;
+  padding: 5px; 
+  width: 100%;
+  position: static;
+  left: 0;
+  bottom: 0;
+}
+
+.footer_details {
+  color: #757575;
+  font-weight: bolder;
+  text-align: center;
+  display: block;
+  padding: 10px;
+}
+
+.footer_social_media_icons_container {
+  text-align: center;
+  margin: 10px 0;
+}
+
+.footer_social_media_icon {
+  color: black;
+  text-align: center;
+  margin: 0 5px;
+  padding: 10px;
+  background: #757575;
+  border-radius: 50%;
+}
+
+.footer_copyright {
+  display: block;
+  text-align: center;
+  color: #757575;
+  padding: 10px 0;
+}
+
+
+/*************************************************CHECKOUT MODAL*****************************************************************/
+
+.modal_bg {
+  position: fixed;
+  display: none;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: black;
+  z-index: 10000;
+  opacity: 0.5;
+}
+
+.checkout_form {
+  min-width: 300px;
+  z-index: 20000;
+  display: none;
+  width: 45%;
+  border-radius: 10px;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  height: auto;
+  padding: 15px;
+  background: white;
+}
+
+.close_checkout_form_btn {
+  display: block;
+  text-align: right;
+  font-size: 1.35rem;
+  cursor: pointer;
+  background: none;
+  border: none;
+}
+
+.checkout_form h4 {
+  text-align: center;
+}
+
+.checkout_form label {
+  display: block;
+  margin-bottom: 5px; 
+  font-weight: bold;
+}
+
+.cardholder_name {
+  width: 100%;
+  display: block;
+  box-sizing: border-box;
+  padding: 10px;
+  border-radius: 2.5px;
+  border: 2px solid #000;
+  margin-bottom: 15px;
+}
+
+.no_spinner::-webkit-inner-spin-button, 
+.no_spinner::-webkit-outer-spin-button { 
+  -webkit-appearance: none; 
+  margin: 0; 
+}
+
+.checkout_form .number {
+  width: 100%;
+  display: block;
+  padding: 10px;
+  border-radius: 2.5px;
+  border: 2px solid #000;
+  
+}
+
+.card_number {
+  width: 100%;
+  position: relative;
+  margin-bottom: 15px;
+}
+
+.card_number .fa-credit-card {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  line-height: 39px;
+  font-size: 18px;
+}
+
+.expiration {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.expiration input {
+  padding: 10px;
+  border-radius: 2.5px;
+  border: 2px solid #000;
+  box-sizing: border-box;
+}
+
+.mm, .yy {
+  max-width: 45%;
+  margin-right: 5%;
+  margin-bottom: 10px;
+}
+
+.cvv_input {
+  max-width: 100%;
+}
+
+.checkout_form hr {
+  margin-top: 20px;
+}
+
+.total_billed {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.confirm_payment {
+  display: block;
+  width: 100%;
+  margin: 20px auto;
+  padding: 10px;
+  background: #d53032;
+  border-radius: 4px;
+  font-size: 18px;
+  border: none;
+  cursor: pointer;
+  font-weight: bolder;
+}
+
+.confirm_payment .fa-arrow-right > path {
+  color: #fff;
+}
+
+.expiration_date, .cvv {
+  width: 50%;
+}
+
+
+.total_billed span {
+  font-weight: bold;
+}
+
+
+/******************************************************** ERROR PROMPT **********************************************************/
+.error_prompt {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  width: 500px;
+  max-width: 90%;
+  padding: 15px 20px;
+  border-radius: 5px;
+  background: #d53032;
+}
+
+.error_prompt .fa-frown > path {
+  fill: #fff;
+}
+
+.error_message {
+  color: #fff;
+}
+
+
+/*************************************************MEDIA QUERIES*****************************************************************/
+@media (max-width: 650px) {
+  .hamburger_icon {
+    display: inline-block;
+  }
+
+  .navbar {
+    display: none;
+  }
+
+  .cart {
+    width: 95%;
+  }
+
+}
+
+@media (min-width: 651px) {
+  .hamburger_icon_btn {
+    display: none;
+  }
+}

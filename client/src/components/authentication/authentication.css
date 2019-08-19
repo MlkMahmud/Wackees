@@ -1,0 +1,91 @@
+.login_form,
+.sign_up_form {
+  width: 80%;
+  max-width: 500px;
+  margin: 100px auto 10px auto;
+  min-height: 100vh;
+  font-weight: bolder;
+}
+
+.user_icon_container {
+  margin: 0 auto;
+  display: block;
+  width: 50px;
+  height: 50px;
+  line-height: 50px;
+  border-radius: 50%;
+  background: black;
+  text-align: center;
+}
+
+.user_icon > path {
+  color: #FFF;
+}
+
+.email_input_container,
+.name_input_container, 
+.password_input_container {
+  width: 100%;
+  margin: 20px 0;
+  position: relative;
+}
+
+.login_form input, .sign_up_form input {
+  width: 100%;
+  border: 1px solid rgb(117, 117, 117);
+  padding: 10px 0 10px 10px;
+  border-radius: 2px;
+  font-size: 16px;
+}
+
+.auth_submit_btn {
+  display: block;
+  max-width: 500px;
+  width: 100%;
+  margin: 20px 0;
+  border-radius: 2px;
+  cursor: pointer;
+  padding: 10px 0;
+  text-align: center;
+  border: #d53032;
+  background: #d53032;
+}
+
+.fa-arrow-right > path {
+  color: white;
+  font-weight: bolder;
+  font-size: 20px;
+}
+
+.lost_password {
+  display: block;
+  background: none;
+  border: none;
+  width: 100%;
+  font: normal normal 700 normal 16px / normal "Roboto Slab", serif;
+  max-width: 500px;
+  text-align: center;
+}
+
+.switch_user_role {
+  display: block;
+  width: 100%;
+  border: none;
+  background: none;
+  font: normal normal 700 normal 20px / normal "Roboto Slab", serif;
+  text-align: center;
+  margin: 20px 0;
+  color: #d53032;
+  text-decoration: underline;
+}
+
+.or {
+  display: block;
+  margin: 20px 0;
+  text-align: center;
+  font-weight: bolder;
+}
+
+.login_form_welcome_message {
+  text-align: center;
+}
