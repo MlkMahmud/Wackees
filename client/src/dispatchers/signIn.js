@@ -18,13 +18,13 @@ const signIn = (e, history) => (dispatch) => {
     .then(res => res.json())
     .then((payload) => {
       if ('message' in payload) throw Error(payload.message);
-      history.push(route);
-      sessionStorage.setItem('user', JSON.stringify({ ...payload, role }));
       dispatch({
         type: 'LOGIN',
         payload,
         role,
       });
+      history.push(route);
+      sessionStorage.setItem('user', JSON.stringify({ ...payload, role }));
     })
     .catch(({ message }) => {
       dispatch({
