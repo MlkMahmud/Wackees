@@ -75,7 +75,7 @@
     "react-router-dom": "^5.0.1",
     "redux": "^4.0.4",
     "redux-thunk": "^2.3.0",
-    "sequelize": "^5.9.0"
+    "sequelize": "^5.15.1"
   },
   "browserslist": [
     "last 1 version",
