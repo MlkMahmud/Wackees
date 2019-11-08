@@ -5,9 +5,9 @@ import {
 import chai from 'chai';
 import sequelize from 'sequelize';
 import chaiHttp from 'chai-http';
-import app from '../../server/src';
-import db from '../../server/src/config/db';
-import { Restaurant, Meal } from '../../server/src/models/Restaurant';
+import app from '../server/src';
+import db from '../server/src/config/db';
+import { Restaurant, Meal } from '../server/src/models/Restaurant';
 
 const { expect } = chai;
 const { Op } = sequelize;

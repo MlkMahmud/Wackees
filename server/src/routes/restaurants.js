@@ -1,7 +1,7 @@
 import express from 'express';
 import controllers from '../controllers/restaurants';
-import verifyToken from '../utils/middleware/verifyToken';
-import imageUploader from '../utils/middleware/imageUploader';
+import verifyToken from '../helpers/verifyToken';
+import imageUploader from '../helpers/imageUploader';
 
 
 const router = express.Router();

@@ -1,5 +1,5 @@
-import { Restaurant } from '../../models/Restaurant';
-import cloudinary from '../../config/cloudinary-config';
+import { Restaurant } from '../models/Restaurant';
+import cloudinary from '../config/cloudinary-config';
 
 async function uploadImage(req, res, next) {
   const image = req.files ? req.files.image : null;

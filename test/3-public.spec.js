@@ -1,8 +1,8 @@
 import { describe, before, it } from 'mocha';
 import chai from 'chai';
 import chaiHttp from 'chai-http';
-import { Restaurant } from '../../server/src/models/Restaurant';
-import app from '../../server/src';
+import { Restaurant } from '../server/src/models/Restaurant';
+import app from '../server/src';
 
 chai.use(chaiHttp);
 const { expect } = chai;

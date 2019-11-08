@@ -4,9 +4,9 @@ import {
 } from 'mocha';
 import chai from 'chai';
 import chaiHttp from 'chai-http';
-import app from '../../server/src';
-import { Customer } from '../../server/src/models/Customer';
-import { Restaurant } from '../../server/src/models/Restaurant';
+import app from '../server/src';
+import { Customer } from '../server/src/models/Customer';
+import { Restaurant } from '../server/src/models/Restaurant';
 
 
 const { expect } = chai;

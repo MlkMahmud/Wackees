@@ -1,6 +1,6 @@
 import { Restaurant, Meal } from '../models/Restaurant';
 import { Order } from '../models/Customer';
-import validator from '../utils/validate-input';
+import validator from '../helpers/validator';
 
 const { isValidName, isValidPrice } = validator;
 

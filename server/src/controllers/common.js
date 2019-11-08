@@ -3,7 +3,7 @@ import sequelize from 'sequelize';
 import jwt from 'jsonwebtoken';
 import { Restaurant, Meal } from '../models/Restaurant';
 import { Customer, Order } from '../models/Customer';
-import validator from '../utils/validate-input';
+import validator from '../helpers/validator';
 
 const { Op } = sequelize;
 const { isValidName, isValidPassword, isValidEmail } = validator;
